@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
+
+require 'rubygems'
+require 'shellcast'
+
+case ARGV[0]
+when 'record'
+	ShellCast::Recorder.record!
+when 'list'
+  ShellCast::Player.list
+when 'play'
+  if ARGV[1]
+    ShellCast::Player.play(ARGV[1])
+  else
+    puts "Missing id for shellcast"
+    ShellCast::Player.list
+    puts "Select one..."
+    exit
+  end
+else
+  puts "Usage: #{__FILE__} command [shellcast_id]"
+  puts "Commands: record, list, play, publish, get"
+end
