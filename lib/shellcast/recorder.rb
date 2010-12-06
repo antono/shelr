@@ -15,7 +15,9 @@ module ShellCast
       puts "Your session started"
       puts "Type Ctrl+D or exit to finish recording"
       puts "-" * 80
+      init_terminal
       system(script_cmd)
+      restore_terminal
       puts "-" * 80
       puts "Session finihed!"
       puts "Shellcast ID:\t #{shellcast_id}"
@@ -33,6 +35,18 @@ module ShellCast
     end
 
     private
+
+    def init_terminal
+      stty_data = `stty -a`
+      @user_columns = stty_data.match(/columns (\d+)/)[1]
+      @user_rows    = stty_data.match(/rows (\d+)/)[1]
+      puts "Saved terminal size #{@user_columns}X#{@user_rows}"
+      system("stty columns 80 rows 24")
+    end
+
+    def restore_terminal
+      system("stty columns #{@user_columns} rows #{@user_rows}")
+    end
 
     def shellcast_dir
       @shellcast_dir ||= ShellCast.shellcast_dir(shellcast_id)
