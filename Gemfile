@@ -1,7 +1,9 @@
 source "http://rubygems.org"
 
 gem 'xdg'
-gem 'ohai'
+gem 'colored'
+#gem 'artii'
+#gem 'ohai'
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

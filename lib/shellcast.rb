@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'fileutils'
+require 'colored'
 require 'xdg'
 require 'yaml'
 
