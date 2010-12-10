@@ -1,5 +1,36 @@
+# encoding: utf-8
 module ShellCast
   class Recorder
+
+    HEADER = <<-EOH
+                                            █    █                               
+     █████                                  █                                    
+     █   ▓█                                 █                                    
+     █    █  ███    ▓██▒   ███    █▒██▒  ██▓█  ███    █▒██▒   ██▓█               
+     █   ▒█ ▓▓ ▒█  ▓█  ▓  █▓ ▓█   ██  █ █▓ ▓█    █    █▓ ▒█  █▓ ▓█               
+     █████  █   █  █░     █   █   █     █   █    █    █   █  █   █               
+     █  ░█▒ █████  █      █   █   █     █   █    █    █   █  █   █               
+     █   ░█ █      █░     █   █   █     █   █    █    █   █  █   █               
+     █    █ ▓▓  █  ▓█  ▓  █▓ ▓█   █     █▓ ▓█    █    █   █  █▓ ▓█    █      █   
+     █    ▒  ███▒   ▓██▒   ███    █      ██▓█  █████  █   █   ██▒█    █      █   
+                                                                 █               
+                                                              ▓ ▒█               
+                                                              ▒██░              
+    EOH
+
+    FOOTER = <<-EOF
+              █             █           █                 █        
+     ██████                             █                 █    █   
+     █                                  █                 █    █   
+     █      ███    █▒██▒  ███    ▒███▒  █▒██▒   ███    ██▓█    █   
+     █        █    █▓ ▒█    █    █▒ ░█  █▓ ▒█  ▓▓ ▒█  █▓ ▓█    █   
+     ██████   █    █   █    █    █▒░    █   █  █   █  █   █    █   
+     █        █    █   █    █    ░███▒  █   █  █████  █   █    █   
+     █        █    █   █    █       ▒█  █   █  █      █   █        
+     █        █    █   █    █    █░ ▒█  █   █  ▓▓  █  █▓ ▓█    █   
+     █      █████  █   █  █████  ▒███▒  █   █   ███▒   ██▓█    █   
+
+    EOF
 
     def self.record!
       new.record!
@@ -14,12 +45,11 @@ module ShellCast
       request_metadata
       puts "Your session started"
       puts "Type Ctrl+D or exit to finish recording"
-      puts "-" * 80
+      puts HEADER.black_on_white
       init_terminal
       system(script_cmd)
       restore_terminal
-      puts "-" * 80
-      puts "Session finihed!"
+      puts FOOTER.black_on_white
       puts "Shellcast ID:\t #{shellcast_id}"
       puts "Shellcast path:\t #{shellcast_dir}"
     end
