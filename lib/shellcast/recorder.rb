@@ -41,17 +41,16 @@ module ShellCast
     end
 
     def record!
-      FileUtils.mkdir_p(shellcast_dir) unless File.exists?(shellcast_dir)
+      test_shellcast_data_dir
       request_metadata
+      puts HEADER.black_on_white
       puts "Your session started"
       puts "Type Ctrl+D or exit to finish recording"
-      puts HEADER.black_on_white
       init_terminal
       system(script_cmd)
       restore_terminal
       puts FOOTER.black_on_white
-      puts "Shellcast ID:\t #{shellcast_id}"
-      puts "Shellcast path:\t #{shellcast_dir}"
+      puts "hint $ shellcast play #{shellcast_id}".green
     end
 
     def request_metadata
@@ -65,6 +64,10 @@ module ShellCast
     end
 
     private
+
+    def test_shellcast_data_dir
+      FileUtils.mkdir_p(shellcast_dir) unless File.exists?(shellcast_dir)
+    end
 
     def init_terminal
       stty_data = `stty -a`

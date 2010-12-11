@@ -1,13 +1,14 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    artii (1.0.1)
     colored (1.2)
     diff-lcs (1.1.2)
     git (1.2.5)
     jeweler (1.5.1)
       bundler (~> 1.0.0)
       git (>= 1.2.5)
+      rake
+    mocha (0.9.9)
       rake
     rake (0.8.7)
     rcov (0.9.9)
@@ -25,10 +26,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  artii
-  bundler (~> 1.0.0)
+  bundler
   colored
-  jeweler (~> 1.5.1)
+  jeweler
+  mocha
   rcov
-  rspec (~> 2.1.0)
+  rspec
   xdg
