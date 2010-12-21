@@ -54,12 +54,12 @@ module ShellCast
     end
 
     def request_metadata
-      puts "Provide name for Your shellcast: "
+      print "Provide name for Your shellcast: "
       @meta["title"] = STDIN.gets.strip
       @meta["id"] = shellcast_id
       puts shellcast_file('meta')
       File.open(shellcast_file('meta'), 'w+') do |meta|
-        meta.puts @meta.to_yaml
+        meta.puts @meta.to_json
       end
     end
 

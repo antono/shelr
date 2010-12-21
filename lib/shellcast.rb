@@ -3,6 +3,7 @@ require 'fileutils'
 require 'colored'
 require 'xdg'
 require 'yaml'
+require 'json'
 
 module ShellCast
 

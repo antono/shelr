@@ -41,7 +41,7 @@ module ShellCast
 
     def self.list
       Dir[File.join(ShellCast::DATA_DIR, "**", 'meta')].each do |path|
-        metadata = YAML.load_file(path)
+        metadata = JSON.parse(IO.read(path))
         puts "#{metadata["id"]}: #{metadata["title"]}"
       end
     end
