@@ -19,6 +19,15 @@ when 'play'
     puts "Select one..."
     exit
   end
+when 'publish'
+  if ARGV[1]
+    ShellCast::Publisher.new.publish(ARGV[1])
+  else
+    puts "What do you want to publish"
+    ShellCast::Player.list
+    puts "Select one..."
+    exit
+  end
 else
   puts "Usage: #{__FILE__} command [shellcast_id]"
   puts "Commands: record, list, play, publish, get"
