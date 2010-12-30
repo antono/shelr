@@ -5,10 +5,12 @@ $LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
 require 'rubygems'
 require 'shellcast'
 
+BASENAME = File.basename(__FILE__)
+
 case ARGV[0]
 when '-h', '--help'
   puts <<-HELP
-    #{$PROGRAM_NAME} option [arg]
+    #{BASENAME} option [arg]
     
       Options:
         setup API_KEY - setup
@@ -43,10 +45,10 @@ when 'setup'
   if ARGV[1]
     ShellCast.api_key = ARGV[1]
   else
-    puts "\n\tUsage: #{File.basename($PROGRAM_NAME)} setup API_KEY\n\n"
+    puts "\n\tUsage: #{BASENAME} setup API_KEY\n\n"
     exit
   end
 else
-  puts "Usage: #{__FILE__} command [shellcast_id]"
+  puts "Usage: #{BASENAME} command [shellcast_id]"
   puts "Commands: record, list, play, publish, get"
 end
