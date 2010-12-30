@@ -13,9 +13,9 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "shellcast"
-  gem.homepage = "http://github.com/antono/shellcast"
+  gem.homepage = "http://shell.heroku.com/"
   gem.license = "GPL"
-  gem.summary = %Q{Record and distribute shellcasts}
+  gem.summary = %Q{Screencasts for Shell Ninjas}
   gem.description = %Q{Screencast utility for unix shell junkies :)}
   gem.email = "antono.vasiljev@gmail.com"
   gem.authors = ["Antono Vasiljev"]
