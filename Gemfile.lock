@@ -10,7 +10,6 @@ GEM
       rake
     mocha (0.9.9)
       rake
-    oauth (0.4.4)
     rake (0.8.7)
     rcov (0.9.9)
     rspec (2.1.0)
@@ -31,7 +30,6 @@ DEPENDENCIES
   colored
   jeweler
   mocha
-  oauth
   rcov
   rspec
   xdg
