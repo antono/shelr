@@ -2,9 +2,12 @@
 
 Screencasting for [Shell Ninjas](http://shell.heroku.com/).
 
+## Installation
+
+   See [ShellCast](http://shell.heroku.com/records/4d1c5458905ba77eb7000002) :)
+
 ## Usage
 
-    gem install shellcast
     shellcast record
     ...
     exit
