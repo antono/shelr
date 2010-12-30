@@ -5,7 +5,7 @@ require 'uri'
 module ShellCast
   class Publisher
 
-    API_URL = ($PROGNAME == 'shellcast' ? 'http://shell.heroku.com' : 'http://localhost:3000')
+    API_URL = 'http://shell.heroku.com'
 
     def publish(id)
       uri = URI.parse(API_URL + '/records')
