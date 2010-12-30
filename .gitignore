@@ -39,6 +39,7 @@ pkg
 #.\#*
 #
 # For vim:
-#*.swp
+*.swp
 *.gemspec
 *.gem
+*~
