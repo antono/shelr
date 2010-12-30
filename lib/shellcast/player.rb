@@ -65,7 +65,7 @@ module ShellCast
     end
 
     def scriptreplay_cmd
-      "scriptreplay #{shellcast_file('timing')} #{shellcast_file('data')}"
+      "scriptreplay #{shellcast_file('timing')} #{shellcast_file('typescript')}"
     end
   end
 end
