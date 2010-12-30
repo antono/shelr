@@ -37,6 +37,10 @@ module ShellCast
       end
       meta = JSON.parse(out.delete('meta'))
       meta.each { |k,v| out[k] = v }
+      print 'Description: '
+      out['description'] = STDIN.gets.strip
+      print 'Tags (ex: howto, linux): '
+      out['tags'] = STDIN.gets.strip
       return out.to_json
     end
   end
