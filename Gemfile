@@ -2,7 +2,6 @@ source "http://rubygems.org"
 
 gem 'xdg'
 gem 'colored'
-gem 'oauth'
 #gem 'artii'
 #gem 'ohai'
 

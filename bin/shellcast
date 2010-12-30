@@ -6,6 +6,17 @@ require 'rubygems'
 require 'shellcast'
 
 case ARGV[0]
+when '-h', '--help'
+  puts <<-HELP
+    #{$PROGRAM_NAME} option [arg]
+    
+      Options:
+        setup API_KEY - setup
+        record - record new shellcast
+        push RECORD_ID - publish
+        list - print list of records
+        play RECORD_ID - play local record
+  HELP
 when 'record'
 	ShellCast::Recorder.record!
 when 'list'
@@ -19,13 +30,20 @@ when 'play'
     puts "Select one..."
     exit
   end
-when 'publish'
+when 'push'
   if ARGV[1]
     ShellCast::Publisher.new.publish(ARGV[1])
   else
     puts "What do you want to publish"
     ShellCast::Player.list
     puts "Select one..."
+    exit
+  end
+when 'setup'
+  if ARGV[1]
+    ShellCast.api_key = ARGV[1]
+  else
+    puts "\n\tUsage: #{File.basename($PROGRAM_NAME)} setup API_KEY\n\n"
     exit
   end
 else

@@ -56,7 +56,7 @@ module ShellCast
     def request_metadata
       print "Provide name for Your shellcast: "
       @meta["title"] = STDIN.gets.strip
-      @meta["id"] = shellcast_id
+      @meta["created_at"] = shellcast_id
       puts shellcast_file('meta')
       File.open(shellcast_file('meta'), 'w+') do |meta|
         meta.puts @meta.to_json
@@ -94,7 +94,7 @@ module ShellCast
     end
 
     def script_cmd
-      "script -c 'bash' #{shellcast_file('data')} -t 2> #{shellcast_file('timing')}"
+      "script -c 'bash' #{shellcast_file('typescript')} -t 2> #{shellcast_file('timing')}"
     end
   end
 end
