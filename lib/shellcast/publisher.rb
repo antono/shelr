@@ -1,11 +1,10 @@
-require 'oauth'
 require 'net/http'
 require 'uri'
 
 module ShellCast
   class Publisher
 
-    API_URL = 'http://shell.heroku.com'
+    API_URL = ENV['SC_LOCAL'] ? 'http://localhost:3000' : 'http://shell.heroku.com'
 
     def publish(id)
       uri = URI.parse(API_URL + '/records')
