@@ -1,19 +1,22 @@
-= shellcast
+# ShellCast
 
-Description goes here.
+Screencasting for [Shell Ninjas](http://shell.heroku.com/).
 
-== Contributing to shellcast
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+## Usage
 
-== Copyright
+    gem install shellcast
+    shellcast record
+    ...
+    exit
+    shellcash push ID
+    shellcast play ID
 
-Copyright (c) 2010 Antono Vasiljev. See LICENSE.txt for
-further details.
+## Dependencies
 
+You need `script` and `scriptreplay` tools from BSD Utils.
+Tey are already installed if You use Debian/Ubuntu/BSD variants.
+Not sure about other OSes.
+
+## Copyright
+
+Copyright (c) 2010 Antono Vasiljev. See LICENSE.txt for further details.
