@@ -1,4 +1,9 @@
 # encoding: utf-8
+require 'net/http'
+require 'tmpdir'
+require 'fileutils'
+require 'pathname'
+
 module ShellCast
   class Player
 
@@ -37,6 +42,31 @@ module ShellCast
 
     def self.play(id)
       new(id).play
+    end
+
+    def self.play_remote(url)
+      puts ".==> Fetching #{url}".white_on_black
+      resp = Net::HTTP.get(URI.parse(url))
+      parts = JSON.parse(resp)
+
+      print "| Title:\t".yellow
+      puts parts['title']
+      print "| Description:\t".yellow
+      puts parts['description']
+
+      Dir.mktmpdir do |dir|
+        %w(typescript timing).each do |type|
+          File.open(File.join(dir, type), 'w') { |f| f.puts(parts[type]) }
+        end
+        puts "+==> Playing... ".white_on_black
+        system "scriptreplay #{File.join(dir, 'timing')} #{File.join(dir, 'typescript')}"
+        puts "+\n+"
+        print "| Title:\t".yellow
+        puts parts['title']
+        print "| Description:\t".yellow
+        puts parts['description']
+        puts "`==> The end... ".white_on_black
+      end
     end
 
     def self.list

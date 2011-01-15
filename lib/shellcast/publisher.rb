@@ -4,17 +4,15 @@ require 'uri'
 module ShellCast
   class Publisher
 
-    API_URL = ENV['SC_LOCAL'] ? 'http://localhost:3000' : 'http://shell.heroku.com'
-
     def publish(id)
-      uri = URI.parse(API_URL + '/records')
+      uri = URI.parse(ShellCast::API_URL + '/records')
       params = { 'record' =>  prepare(id) }
       params.merge!({'api_key' => ShellCast.api_key}) if api_key
       res = Net::HTTP.post_form(uri, params)
       res = JSON.parse(res.body)
       if res['ok']
         puts res['message']
-        puts API_URL + '/records/' + res['id']
+        puts ShellCast::API_URL + '/records/' + res['id']
       else
         puts res['message']
       end

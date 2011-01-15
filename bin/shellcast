@@ -25,7 +25,11 @@ when 'list'
   ShellCast::Player.list
 when 'play'
   if ARGV[1]
-    ShellCast::Player.play(ARGV[1])
+    if ARGV[1] =~ /^http:.*/
+      ShellCast::Player.play_remote(ARGV[1])
+    else
+      ShellCast::Player.play(ARGV[1])
+    end
   else
     puts "Missing id for shellcast"
     ShellCast::Player.list

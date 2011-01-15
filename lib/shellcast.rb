@@ -11,6 +11,7 @@ module ShellCast
   DATA_DIR   = File.join(XDG::Data.home,   APP_NAME)
   CONFIG_DIR = File.join(XDG::Config.home, APP_NAME)
   API_KEY    = File.join(CONFIG_DIR, 'api_key')
+  API_URL    = ENV['SC_LOCAL'] ? 'http://localhost:3000' : 'http://shell.heroku.com'
 
   class << self
     def api_key
