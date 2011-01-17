@@ -1,0 +1,63 @@
+shellcast(1) -- screencasting for shell junkies
+===============================================
+
+## SYNOPSIS
+
+`shellcast` command [id]
+
+## DESCRIPTION
+
+**Shellcast** records terminal output and can replay it 
+
+## COMMANDS
+
+  * `record`:
+    Will record your terminal unless you type `exit` or Ctrl+D and
+    store it to $HOME/.local/share/shellcast/
+
+  * `list`:
+    lists all your shellcasts. 
+
+  * `play`:
+    plays local or remote shellcast.
+
+  * `push`:
+    publish your shellcast
+
+## EXAMPLES
+
+Record your shellcast:
+
+    $ shellcast record
+    ... do something ...
+    $ exit
+
+List recorded shellcasts:
+
+    $ shellcast list
+
+Play local shellcast:
+
+    $ shellcast play 1293702847
+
+Play remote shellcast:
+
+    $ shellcast play http://shell.heroku.com/records/4d1f7c3890820d6144000002.json
+
+Publish your shellcast:
+
+    $ shellcast push 1293702847
+
+
+## BUGS
+
+**shellcast** is written in Ruby and depends on `script` and `scriptreplay`,
+commands libraries that are non-trivial to install on some systems.
+
+## COPYRIGHT
+
+Ronn is Copyright (C) 2011 Antono Vasiljev <http://antono.info/>
+
+## SEE ALSO
+
+script(1), scriptreplay(1)
