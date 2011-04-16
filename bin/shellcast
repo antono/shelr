@@ -6,11 +6,9 @@ require 'rubygems'
 require 'shellcast'
 
 BASENAME = File.basename(__FILE__)
+HELP = <<-HELP
 
-case ARGV[0]
-when '-h', '--help'
-  puts <<-HELP
-    #{BASENAME} option [arg]
+  Usage: #{BASENAME} option [arg]
     
       Options:
         setup API_KEY - setup
@@ -19,6 +17,9 @@ when '-h', '--help'
         list - print list of records
         play RECORD_ID - play local record
   HELP
+case ARGV[0]
+when '-h', '--help'
+  puts HELP
 when 'record'
 	ShellCast::Recorder.record!
 when 'list'
@@ -53,6 +54,5 @@ when 'setup'
     exit
   end
 else
-  puts "Usage: #{BASENAME} command [shellcast_id]"
-  puts "Commands: record, list, play, publish, get"
+  puts HELP
 end
