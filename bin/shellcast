@@ -11,12 +11,14 @@ HELP = <<-HELP
   Usage: #{BASENAME} option [arg]
     
       Options:
-        setup API_KEY - setup
-        record - record new shellcast
-        push RECORD_ID - publish
-        list - print list of records
-        play RECORD_ID - play local record
+        setup API_KEY   - setup
+        record          - record new shellcast
+        push RECORD_ID  - publish
+        list            - print list of records
+        play RECORD_ID  - play local record
+        play RECORD_URL - play remote record
   HELP
+
 case ARGV[0]
 when '-h', '--help'
   puts HELP
