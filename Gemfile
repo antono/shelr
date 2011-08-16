@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'xdg', '1.0.0'
+gem 'xdg', '2.2.1'
 gem 'colored'
 
 group :development do

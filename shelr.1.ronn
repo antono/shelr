@@ -1,13 +1,13 @@
-shellcast(1) -- screencasting for shell junkies
+shelr(1) -- screencasting for shell junkies
 ===============================================
 
 ## SYNOPSIS
 
-`shellcast` command [id]
+`shelr` command [id]
 
 ## DESCRIPTION
 
-**Shellcast** records terminal output and can replay it 
+**Shelr** records terminal output and can replay it 
 
 ## COMMANDS
 
@@ -28,35 +28,35 @@ shellcast(1) -- screencasting for shell junkies
 
 Record your shellcast:
 
-    $ shellcast record
+    $ shelr record
     ... do something ...
     $ exit
 
 List recorded shellcasts:
 
-    $ shellcast list
+    $ shelr list
 
 Play local shellcast:
 
-    $ shellcast play 1293702847
+    $ shelr play 1293702847
 
 Play remote shellcast:
 
-    $ shellcast play http://shell.heroku.com/records/4d1f7c3890820d6144000002.json
+    $ shelr play http://shelr.tv/records/4d1f7c3890820d6144000002.json
 
 Publish your shellcast:
 
-    $ shellcast push 1293702847
+    $ shelr push 1293702847
 
 
 ## BUGS
 
-**shellcast** is written in Ruby and depends on `script` and `scriptreplay`,
+**shelr** is written in Ruby and depends on `script` and `scriptreplay`,
 commands libraries that are non-trivial to install on some systems.
 
 ## COPYRIGHT
 
-Ronn is Copyright (C) 2011 Antono Vasiljev <http://antono.info/>
+Shelr is Copyright (C) 2011 Antono Vasiljev <http://antono.info/>
 
 ## SEE ALSO
 

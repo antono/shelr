@@ -6,10 +6,10 @@ describe Shelr do
   end
 
   it "should provide XDG and APP_NAME based ::DATA_DIR" do
-    Shelr::DATA_DIR.should == File.join(XDG['DATA_HOME'], Shelr::APP_NAME)
+    Shelr::DATA_DIR.should == File.join(XDG['DATA_HOME'].to_s, Shelr::APP_NAME)
   end
 
   it "should provide XDG config path" do
-    Shelr::CONFIG_DIR.should == File.join(XDG['CONFIG_HOME'], Shelr::APP_NAME)
+    Shelr::CONFIG_DIR.should == File.join(XDG['CONFIG_HOME'].to_s, Shelr::APP_NAME)
   end
 end

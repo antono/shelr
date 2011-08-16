@@ -1,16 +1,16 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "SHELLCAST" "1" "January 2011" "" ""
+.TH "SHELR" "1" "August 2011" "" ""
 .
 .SH "NAME"
-\fBshellcast\fR \- screencasting for shell junkies
+\fBshelr\fR \- screencasting for shell junkies
 .
 .SH "SYNOPSIS"
-\fBshellcast\fR command [id]
+\fBshelr\fR command [id]
 .
 .SH "DESCRIPTION"
-\fBShellcast\fR records terminal output and can replay it
+\fBShelr\fR records terminal output and can replay it
 .
 .SH "COMMANDS"
 .
@@ -37,7 +37,7 @@ Record your shellcast:
 .
 .nf
 
-$ shellcast record
+$ shelr record
 \.\.\. do something \.\.\.
 $ exit
 .
@@ -52,7 +52,7 @@ List recorded shellcasts:
 .
 .nf
 
-$ shellcast list
+$ shelr list
 .
 .fi
 .
@@ -65,7 +65,7 @@ Play local shellcast:
 .
 .nf
 
-$ shellcast play 1293702847
+$ shelr play 1293702847
 .
 .fi
 .
@@ -78,7 +78,7 @@ Play remote shellcast:
 .
 .nf
 
-$ shellcast play http://shell\.heroku\.com/records/4d1f7c3890820d6144000002\.json
+$ shelr play http://shelr\.tv/records/4d1f7c3890820d6144000002\.json
 .
 .fi
 .
@@ -91,17 +91,17 @@ Publish your shellcast:
 .
 .nf
 
-$ shellcast push 1293702847
+$ shelr push 1293702847
 .
 .fi
 .
 .IP "" 0
 .
 .SH "BUGS"
-\fBshellcast\fR is written in Ruby and depends on \fBscript\fR and \fBscriptreplay\fR, commands libraries that are non\-trivial to install on some systems\.
+\fBshelr\fR is written in Ruby and depends on \fBscript\fR and \fBscriptreplay\fR, commands libraries that are non\-trivial to install on some systems\.
 .
 .SH "COPYRIGHT"
-Ronn is Copyright (C) 2011 Antono Vasiljev \fIhttp://antono\.info/\fR
+Shelr is Copyright (C) 2011 Antono Vasiljev \fIhttp://antono\.info/\fR
 .
 .SH "SEE ALSO"
 script(1), scriptreplay(1)

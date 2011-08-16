@@ -29,7 +29,7 @@ module Shelr
     end
 
     def record!
-      check_data_dir
+      check_record_dir
       request_metadata
       puts HEADER.black_on_white
       puts "Your session started"
@@ -38,7 +38,7 @@ module Shelr
       system(script_cmd)
       restore_terminal
       puts FOOTER.black_on_white
-      puts "hint $ #{Shelr::AP} play #{shellcast_id}".green
+      puts "hint $ #{Shelr::APP_NAME} play #{record_id}".green
     end
 
     def request_metadata
@@ -53,8 +53,8 @@ module Shelr
 
     private
 
-    def check_data_dir
-      FileUtils.mkdir_p(data_dir) unless File.exists?(data_dir)
+    def check_record_dir
+      FileUtils.mkdir_p(record_dir) unless File.exists?(record_dir)
     end
 
     def init_terminal
