@@ -1,4 +1,4 @@
-# Shelr -- screencasting for [shell ninjas](TV).
+# Shelr -- screencasting for [shell ninjas][TV].
 
 ## Installation
 
