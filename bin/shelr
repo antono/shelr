@@ -8,9 +8,9 @@ require 'shelr'
 BASENAME = File.basename(__FILE__)
 HELP     = <<-HELP
 
-  Usage: #{BASENAME} option [arg]
+  Usage: #{BASENAME} command [arg]
     
-  Options:
+  Commands:
     setup API_KEY   - setup
     record          - record new shellcast
     push RECORD_ID  - publish
@@ -44,7 +44,7 @@ when 'push'
   if ARGV[1]
     Shelr::Publisher.new.publish(ARGV[1])
   else
-    puts "What do you want to publish"
+    puts "What do you want to publish?"
     Shelr::Player.list
     puts "Select one..."
     exit
