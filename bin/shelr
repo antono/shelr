@@ -18,6 +18,8 @@ HELP     = <<-HELP
     play RECORD_ID  - play local record
     play RECORD_URL - play remote record
 
+  Visit: http://shelr.tv/ for more info.
+
 HELP
 
 case ARGV[0]
