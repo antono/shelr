@@ -1,8 +1,9 @@
 require 'spec_helper'
 
-describe ShellCast::Publisher do
+describe Shelr::Publisher do
   describe "#publish(id)" do
     it "should publish shellcast with oauth" do
+      pending
     end
   end
 end

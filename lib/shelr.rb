@@ -5,13 +5,17 @@ require 'xdg'
 require 'yaml'
 require 'json'
 
-module ShellCast
+module Shelr
 
-  APP_NAME   = 'shellcast'
+  APP_NAME   = 'shelr'
   DATA_DIR   = File.join(XDG['DATA_HOME'].to_s,   APP_NAME)
   CONFIG_DIR = File.join(XDG['CONFIG_HOME'].to_s, APP_NAME)
   API_KEY    = File.join(CONFIG_DIR, 'api_key')
-  API_URL    = ENV['SC_LOCAL'] ? 'http://localhost:3000' : 'http://shell.heroku.com'
+  API_URL    = ENV['SC_LOCAL'] ? 'http://localhost:3000' : 'http://shelr.tv'
+
+  autoload :Recorder,  'shelr/recorder.rb'
+  autoload :Player,    'shelr/player.rb'
+  autoload :Publisher, 'shelr/publisher.rb'
 
   class << self
     def api_key
@@ -21,18 +25,12 @@ module ShellCast
 
     def api_key=(key)
       FileUtils.mkdir_p(CONFIG_DIR) unless File.exist?(CONFIG_DIR)
-      File.open(API_KEY, 'w+') do |f|
-        f.puts(key.strip)
-      end
+      File.open(API_KEY, 'w+') { |f| f.puts(key.strip) }
     end
 
-    def shellcast_dir(shellcast_id)
-      File.join(ShellCast::DATA_DIR, shellcast_id.to_s)
+    def data_dir(record_id)
+      File.join(Shelr::DATA_DIR, record_id.to_s)
     end
   end
-
-  autoload :Recorder,  'shellcast/recorder.rb'
-  autoload :Player,    'shellcast/player.rb'
-  autoload :Publisher, 'shellcast/publisher.rb'
 
 end

@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'bundler'
+
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -11,14 +12,13 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "shellcast"
-  gem.homepage = "http://shell.heroku.com/"
-  gem.license = "GPL"
+  gem.name = "shelr"
+  gem.homepage = "http://shelr.tv/"
+  gem.license = "GPLv3"
   gem.summary = %Q{Screencasts for Shell Ninjas}
   gem.description = %Q{Screencast utility for unix shell junkies :)}
-  gem.email = "antono.vasiljev@gmail.com"
-  gem.authors = ["Antono Vasiljev"]
+  gem.email = "self@antono.info"
+  gem.authors = ["Antono Vasiljev", "Pete Clark"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
@@ -40,7 +40,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "shellcast #{version}"
+  rdoc.title = "shelr #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

@@ -1,9 +1,7 @@
 source "http://rubygems.org"
 
-gem 'xdg'
+gem 'xdg', '1.0.0'
 gem 'colored'
-#gem 'artii'
-#gem 'ohai'
 
 group :development do
   gem "rspec"

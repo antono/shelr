@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ShellCast::Recorder do
+describe Shelr::Recorder do
 
   before(:each) do
     STDIN.stubs(:gets).returns('my shellcast')
