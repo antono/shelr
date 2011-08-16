@@ -42,7 +42,7 @@ module Shelr
     end
 
     def request_metadata
-      print "Provide name for Your shellcast: "
+      print "Provide HUMAN NAME for Your shellcast: "
       @meta["title"] = STDIN.gets.strip
       @meta["created_at"] = record_id
       puts record_file('meta')
