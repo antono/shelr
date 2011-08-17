@@ -24,7 +24,7 @@ module Shelr
         key = STDIN.gets.strip
         Shelr.api_key = key unless key.empty?
       end
-      Shler.api_key
+      Shelr.api_key
     end
 
     def prepare(id)
