@@ -36,27 +36,27 @@ module Shelr
     end
 
     def self.play_remote(url)
-      puts ".==> Fetching #{url}".white_on_black
+      puts ".==> Fetching #{url}"
       resp = Net::HTTP.get(URI.parse(url))
       parts = JSON.parse(resp)
 
-      print "Title:\t".yellow
+      print "Title:\t"
       puts parts['title']
-      print "Description:\t".yellow
+      print "Description:\t"
       puts parts['description']
 
       Dir.mktmpdir do |dir|
         %w(typescript timing).each do |type|
           File.open(File.join(dir, type), 'w') { |f| f.puts(parts[type]) }
         end
-        puts "+==> Playing... ".white_on_black
+        puts "+==> Playing... "
         system "scriptreplay #{File.join(dir, 'timing')} #{File.join(dir, 'typescript')}"
         puts "+\n+"
-        print "| Title:\t".yellow
+        print "| Title:\t"
         puts parts['title']
-        print "| Description:\t".yellow
+        print "| Description:\t"
         puts parts['description']
-        puts "`==> The end... ".white_on_black
+        puts "`==> The end... "
       end
     end
 
@@ -72,11 +72,11 @@ module Shelr
     end
 
     def play
-      puts HEADER.black_on_white
+      puts HEADER
       puts
       system(scriptreplay_cmd)
       puts
-      puts FOOTER.black_on_white
+      puts FOOTER
     end
 
     private

@@ -31,14 +31,15 @@ module Shelr
     def record!
       check_record_dir
       request_metadata
-      puts HEADER.black_on_white
+      puts HEADER
       puts "Your session started"
       puts "Type Ctrl+D or exit to finish recording"
       system(script_cmd)
       restore_terminal
-      puts FOOTER.black_on_white
-      puts "hint $ #{Shelr::APP_NAME} play #{record_id}".green
-      puts "hint $ #{Shelr::APP_NAME} push #{record_id}".green
+      puts FOOTER
+      puts
+      puts "hint $ #{Shelr::APP_NAME} play #{record_id}"
+      puts "hint $ #{Shelr::APP_NAME} push #{record_id}"
     end
 
     def request_metadata

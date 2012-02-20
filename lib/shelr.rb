@@ -1,17 +1,14 @@
-require 'rubygems'
 require 'fileutils'
-require 'colored'
-require 'xdg'
 require 'yaml'
 require 'json'
 
 module Shelr
 
   APP_NAME   = 'shelr'
-  DATA_DIR   = File.join(XDG['DATA_HOME'].to_s,   APP_NAME)
-  CONFIG_DIR = File.join(XDG['CONFIG_HOME'].to_s, APP_NAME)
+  DATA_DIR   = File.join(ENV['HOME'], '.share', APP_NAME)
+  CONFIG_DIR = File.join(ENV['HOME'], '.config', APP_NAME)
   API_KEY    = File.join(CONFIG_DIR, 'api_key')
-  API_URL    = ENV['SC_LOCAL'] ? 'http://localhost:3000' : 'http://shelr.tv'
+  API_URL    = ENV['SHELR_LOCAL'] ? 'http://localhost:3000' : 'http://shelr.tv'
 
   autoload :Recorder,  'shelr/recorder.rb'
   autoload :Player,    'shelr/player.rb'

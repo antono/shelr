@@ -1,4 +1,4 @@
-* TODO Remove dependencies for easier packaging
+* DONE Remove dependencies for easier packaging
 * TODO Port to termrec or ttyrec
   git clone http://angband.pl/git/termrec
   http://angband.pl/termrec.html

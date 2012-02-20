@@ -1,7 +1,6 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    colored (1.2)
     diff-lcs (1.1.2)
     git (1.2.5)
     jeweler (1.6.4)
@@ -20,16 +19,13 @@ GEM
     rspec-expectations (2.1.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.1.0)
-    xdg (2.2.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bundler
-  colored
   jeweler
   mocha
   rcov
   rspec
-  xdg (= 2.2.1)
