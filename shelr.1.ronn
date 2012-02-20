@@ -54,10 +54,15 @@ Publish your shellcast:
 **shelr** is written in Ruby and depends on `script` and `scriptreplay`,
 commands libraries that are non-trivial to install on some systems.
 
+**script** on BSD and Darwin does not support timings.
+
+**Windows** heh.
+
+
 ## COPYRIGHT
 
 Shelr is Copyright (C) 2011 Antono Vasiljev <http://antono.info/>
 
 ## SEE ALSO
 
-script(1), scriptreplay(1)
+script(1), scriptreplay(1), ttyrec(1)
