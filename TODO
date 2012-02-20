@@ -1,3 +1,0 @@
-- Port Figlet from artii gem to ruby 1.9.2 and use
-  instead hardcoded headers and footers
-- Think about console setup before shellcasting

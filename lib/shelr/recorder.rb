@@ -34,17 +34,20 @@ module Shelr
       puts HEADER.black_on_white
       puts "Your session started"
       puts "Type Ctrl+D or exit to finish recording"
-      init_terminal
       system(script_cmd)
       restore_terminal
       puts FOOTER.black_on_white
       puts "hint $ #{Shelr::APP_NAME} play #{record_id}".green
+      puts "hint $ #{Shelr::APP_NAME} push #{record_id}".green
     end
 
     def request_metadata
+      init_terminal
       print "Provide HUMAN NAME for Your shellcast: "
       @meta["title"] = STDIN.gets.strip
       @meta["created_at"] = record_id
+      @meta["columns"] = @user_columns
+      @meta["rows"] = @user_rows
       puts record_file('meta')
       File.open(record_file('meta'), 'w+') do |meta|
         meta.puts @meta.to_json
@@ -62,11 +65,11 @@ module Shelr
       @user_columns = stty_data.match(/columns (\d+)/)[1]
       @user_rows    = stty_data.match(/rows (\d+)/)[1]
       puts "Saved terminal size #{@user_columns}X#{@user_rows}"
-      system("stty columns 80 rows 24")
+      # system("stty columns 80 rows 24")
     end
 
     def restore_terminal
-      system("stty columns #{@user_columns} rows #{@user_rows}")
+      # system("stty columns #{@user_columns} rows #{@user_rows}")
     end
 
     def record_dir
@@ -84,5 +87,6 @@ module Shelr
     def script_cmd
       "script -c 'bash' #{record_file('typescript')} -t 2> #{record_file('timing')}"
     end
+
   end
 end

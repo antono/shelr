@@ -1,0 +1,7 @@
+* TODO Remove dependencies for easier packaging
+* TODO Port to termrec or ttyrec
+  git clone http://angband.pl/git/termrec
+  http://angband.pl/termrec.html
+* TODO Port Figlet from artii gem to ruby 1.9.2
+  and use it instead hardcoded headers and footers
+* TODO Think about terminal setup before shellcasting
