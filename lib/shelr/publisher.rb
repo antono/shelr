@@ -28,10 +28,16 @@ module Shelr
     end
 
     def prepare(id)
+      puts
+      puts 'Your record will be published under terms of Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)'
+      puts 'See http://creativecommons.org/licenses/by-sa/3.0/ for details.'
+      puts
+
       out = {}
       ['meta', 'timing', 'typescript'].each do |file|
         out[file] = File.read(File.join(Shelr.data_dir(id), file))
       end
+
       meta = JSON.parse(out.delete('meta'))
       meta.each { |k,v| out[k] = v }
       print 'Description: '
