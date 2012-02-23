@@ -2,11 +2,23 @@
 
 ## Installation
 
+### From gem
+
 You'll need ruby and rubygems installed.
 
     gem install shelr
 
 See [shellcast](http://shelr.tv/records/4d1c5458905ba77eb7000002) for details :)
+
+### From packages
+
+#### Debian/Ubuntu
+
+PPA: https://launchpad.net/~antono/+archive/shelr
+
+#### Archlinux
+
+PKGBUILD: https://aur.archlinux.org/packages.php?ID=56945
 
 ## Watching other's records
 
