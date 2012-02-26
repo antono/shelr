@@ -29,7 +29,8 @@ module Shelr
 
     def prepare(id)
       puts
-      puts 'Your record will be published under terms of Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)'
+      puts 'Your record will be published under terms'
+      puts 'of Creative Commons Attribution-ShareAlike 3.0 Unported'
       puts 'See http://creativecommons.org/licenses/by-sa/3.0/ for details.'
       puts
 
