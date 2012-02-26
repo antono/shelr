@@ -13,8 +13,10 @@ HELP     = <<-HELP
   Commands:
     setup API_KEY   - setup
     record          - record new shellcast
+    push last       - publish last record
     push RECORD_ID  - publish
     list            - print list of records
+    play last       - play last local record
     play RECORD_ID  - play local record
     play RECORD_URL - play remote record
 

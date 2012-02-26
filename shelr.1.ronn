@@ -1,4 +1,4 @@
-shelr(1) -- screencasting for shell junkies
+shelr(1) -- screencasting for shell ninjas
 ===============================================
 
 ## SYNOPSIS
@@ -13,7 +13,7 @@ shelr(1) -- screencasting for shell junkies
 
   * `record`:
     Will record your terminal unless you type `exit` or Ctrl+D and
-    store it to $HOME/.local/share/shellcast/
+    store it to $HOME/.local/share/shelr/
 
   * `list`:
     lists all your shellcasts. 
@@ -39,6 +39,7 @@ List recorded shellcasts:
 Play local shellcast:
 
     $ shelr play 1293702847
+    $ shelr play last # will play most recent local record
 
 Play remote shellcast:
 
@@ -47,6 +48,7 @@ Play remote shellcast:
 Publish your shellcast:
 
     $ shelr push 1293702847
+    $ shelr push last # will push most recent local record
 
 
 ## BUGS
@@ -61,8 +63,10 @@ commands libraries that are non-trivial to install on some systems.
 
 ## COPYRIGHT
 
-Shelr is Copyright (C) 2011 Antono Vasiljev <http://antono.info/>
+(C) 2010, 2011, 2012 Antono Vasiljev <self@antono.info>
+
+Licensed under GPLv3+
 
 ## SEE ALSO
 
-script(1), scriptreplay(1), ttyrec(1)
+script(1), scriptreplay(1), ttyrec(1), ttyplay(1)

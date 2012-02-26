@@ -26,7 +26,12 @@ module Shelr
     end
 
     def data_dir(record_id)
-      File.join(Shelr::DATA_DIR, record_id.to_s)
+      id = record_id.strip == 'last' ? last_id : record_id.to_s
+      File.join(Shelr::DATA_DIR, id)
+    end
+
+    def last_id
+      File.basename(Dir[File.join(Shelr::DATA_DIR, '*')].sort.last)
     end
   end
 

@@ -38,13 +38,13 @@ module Shelr
       restore_terminal
       puts FOOTER
       puts
-      puts "hint $ #{Shelr::APP_NAME} play #{record_id}"
-      puts "hint $ #{Shelr::APP_NAME} push #{record_id}"
+      puts "Replay  : #{Shelr::APP_NAME} play last"
+      puts "Publish : #{Shelr::APP_NAME} push last"
     end
 
     def request_metadata
       init_terminal
-      print "Provide HUMAN NAME for Your shellcast: "
+      print "Provide HUMAN NAME for Your record: "
       @meta["title"] = STDIN.gets.strip
       @meta["created_at"] = record_id
       @meta["columns"] = @user_columns

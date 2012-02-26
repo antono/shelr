@@ -1,10 +1,10 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "SHELR" "1" "August 2011" "" ""
+.TH "SHELR" "1" "February 2012" "" ""
 .
 .SH "NAME"
-\fBshelr\fR \- screencasting for shell junkies
+\fBshelr\fR \- screencasting for shell ninjas
 .
 .SH "SYNOPSIS"
 \fBshelr\fR command [id]
@@ -16,7 +16,7 @@
 .
 .TP
 \fBrecord\fR
-Will record your terminal unless you type \fBexit\fR or Ctrl+D and store it to $HOME/\.local/share/shellcast/
+Will record your terminal unless you type \fBexit\fR or Ctrl+D and store it to $HOME/\.local/share/shelr/
 .
 .TP
 \fBlist\fR
@@ -66,6 +66,7 @@ Play local shellcast:
 .nf
 
 $ shelr play 1293702847
+$ shelr play last # will play most recent local record
 .
 .fi
 .
@@ -92,6 +93,7 @@ Publish your shellcast:
 .nf
 
 $ shelr push 1293702847
+$ shelr push last # will push most recent local record
 .
 .fi
 .
@@ -100,8 +102,17 @@ $ shelr push 1293702847
 .SH "BUGS"
 \fBshelr\fR is written in Ruby and depends on \fBscript\fR and \fBscriptreplay\fR, commands libraries that are non\-trivial to install on some systems\.
 .
+.P
+\fBscript\fR on BSD and Darwin does not support timings\.
+.
+.P
+\fBWindows\fR heh\.
+.
 .SH "COPYRIGHT"
-Shelr is Copyright (C) 2011 Antono Vasiljev \fIhttp://antono\.info/\fR
+(C) 2010, 2011, 2012 Antono Vasiljev \fIself@antono\.info\fR
+.
+.P
+Licensed under GPLv3+
 .
 .SH "SEE ALSO"
-script(1), scriptreplay(1)
+script(1), scriptreplay(1), ttyrec(1), ttyplay(1)
