@@ -8,7 +8,7 @@ You'll need ruby and rubygems installed.
 
     gem install shelr
 
-See [shellcast](http://shelr.tv/records/4d1c5458905ba77eb7000002) for details :)
+See [shellcast](http://shelr.tv/records/4f49ea4ae557800001000004) for details :)
 
 ### From packages
 
@@ -48,6 +48,6 @@ Not sure about other OSes.
 
 ## Copyright
 
-Copyright (c) 2010 Antono Vasiljev. See LICENSE.txt for further details.
+Copyright (c) 2010, 2011, 2012 Antono Vasiljev. See LICENSE.txt for details.
 
-[TV]: http://shelr.tv/ "Shell records from shell ninjas"
+[TV]: http://shelr.tv/ "Shellcasts from shell ninjas"
