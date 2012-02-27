@@ -77,11 +77,9 @@ module Shelr
     end
 
     def init_terminal
-      stty_data = `stty -a`
-      @user_columns = stty_data.match(/columns (\d+)/)[1]
-      @user_rows    = stty_data.match(/rows (\d+)/)[1]
-      puts "Saved terminal size #{@user_columns}X#{@user_rows}"
-      # system("stty columns 80 rows 24")
+      term_info = `infocmp`
+      @user_columns = term_info.match(/cols#(\d+)/)[1]
+      @user_rows    = term_info.match(/lines#(\d+)/)[1]
     end
 
     def restore_terminal
