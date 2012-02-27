@@ -1,13 +1,16 @@
 shelr(1) -- screencasting for shell ninjas
 ===============================================
 
+## DESCRIPTION
+
+**Shelr** records terminal output and can replay it.
+
+Also you can shere Your records at http://shelr.tv/
+or other services.
+
 ## SYNOPSIS
 
 `shelr` command [id]
-
-## DESCRIPTION
-
-**Shelr** records terminal output and can replay it 
 
 ## COMMANDS
 
@@ -16,7 +19,7 @@ shelr(1) -- screencasting for shell ninjas
     store it to $HOME/.local/share/shelr/
 
   * `list`:
-    lists all your shellcasts. 
+    lists all your shellcasts.
 
   * `play`:
     plays local or remote shellcast.
@@ -50,13 +53,12 @@ Publish your shellcast:
     $ shelr push 1293702847
     $ shelr push last # will push most recent local record
 
+Setup recording backend:
+
+    $ shelr backend script
+    $ shelr backend ttyrec
 
 ## BUGS
-
-**shelr** is written in Ruby and depends on `script` and `scriptreplay`,
-commands libraries that are non-trivial to install on some systems.
-
-**script** on BSD and Darwin does not support timings.
 
 **Windows** heh.
 

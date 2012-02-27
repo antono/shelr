@@ -6,11 +6,14 @@
 .SH "NAME"
 \fBshelr\fR \- screencasting for shell ninjas
 .
+.SH "DESCRIPTION"
+\fBShelr\fR records terminal output and can replay it\.
+.
+.P
+Also you can shere Your records at http://shelr\.tv/ or other services\.
+.
 .SH "SYNOPSIS"
 \fBshelr\fR command [id]
-.
-.SH "DESCRIPTION"
-\fBShelr\fR records terminal output and can replay it
 .
 .SH "COMMANDS"
 .
@@ -99,13 +102,21 @@ $ shelr push last # will push most recent local record
 .
 .IP "" 0
 .
+.P
+Setup recording backend:
+.
+.IP "" 4
+.
+.nf
+
+$ shelr backend script
+$ shelr backend ttyrec
+.
+.fi
+.
+.IP "" 0
+.
 .SH "BUGS"
-\fBshelr\fR is written in Ruby and depends on \fBscript\fR and \fBscriptreplay\fR, commands libraries that are non\-trivial to install on some systems\.
-.
-.P
-\fBscript\fR on BSD and Darwin does not support timings\.
-.
-.P
 \fBWindows\fR heh\.
 .
 .SH "COPYRIGHT"
