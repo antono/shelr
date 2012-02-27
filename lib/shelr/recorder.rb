@@ -77,9 +77,7 @@ module Shelr
     end
 
     def init_terminal
-      term_info = `infocmp`
-      @user_columns = term_info.match(/cols#(\d+)/)[1]
-      @user_rows    = term_info.match(/lines#(\d+)/)[1]
+      @user_rows, @user_columns = `stty size`.split(' ')
     end
 
     def restore_terminal
