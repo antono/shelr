@@ -1,18 +1,19 @@
 require 'fileutils'
-require 'yaml'
 require 'json'
 
 module Shelr
 
-  APP_NAME   = 'shelr'
-  DATA_DIR   = File.join(ENV['HOME'], '.local', 'share', APP_NAME)
-  CONFIG_DIR = File.join(ENV['HOME'], '.config', APP_NAME)
-  API_KEY    = File.join(CONFIG_DIR, 'api_key')
-  API_URL    = ENV['SHELR_LOCAL'] ? 'http://localhost:3000' : 'http://shelr.tv'
+  APP_NAME    = 'shelr'
+  DATA_DIR    = File.join(ENV['HOME'], '.local', 'share', APP_NAME)
+  CONFIG_DIR  = File.join(ENV['HOME'], '.config', APP_NAME)
+  API_KEY     = File.join(CONFIG_DIR, 'api_key')
+  API_URL     = ENV['SHELR_LOCAL'] ? 'http://localhost:3000' : 'http://shelr.tv'
+  BACKEND_CFG = File.join(CONFIG_DIR, 'backend')
 
   autoload :Recorder,  'shelr/recorder.rb'
   autoload :Player,    'shelr/player.rb'
   autoload :Publisher, 'shelr/publisher.rb'
+  autoload :TTYRec,    'shelr/ttyrec.rb'
 
   class << self
     def api_key
@@ -21,8 +22,17 @@ module Shelr
     end
 
     def api_key=(key)
-      FileUtils.mkdir_p(CONFIG_DIR) unless File.exist?(CONFIG_DIR)
+      ensure_config_dir_exist
       File.open(API_KEY, 'w+') { |f| f.puts(key.strip) }
+    end
+
+    def backend
+      @backend ||= File.read(BACKEND_CFG).strip || 'script'
+    end
+
+    def backend=(bin)
+      ensure_config_dir_exist
+      File.open(BACKEND_CFG, 'w+') { |f| f.puts(bin.strip) }
     end
 
     def data_dir(record_id)
@@ -32,6 +42,12 @@ module Shelr
 
     def last_id
       File.basename(Dir[File.join(Shelr::DATA_DIR, '*')].sort.last)
+    end
+
+    private
+
+    def ensure_config_dir_exist
+      FileUtils.mkdir_p(CONFIG_DIR) unless File.exist?(CONFIG_DIR)
     end
   end
 

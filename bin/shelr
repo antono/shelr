@@ -9,16 +9,27 @@ BASENAME = File.basename(__FILE__)
 HELP     = <<-HELP
 
   Usage: #{BASENAME} command [arg]
-    
-  Commands:
-    setup API_KEY   - setup
+
+  Recording:
+
     record          - record new shellcast
+
+  Publishing:
+
     push last       - publish last record
     push RECORD_ID  - publish
+
+  Replaying:
+
     list            - print list of records
     play last       - play last local record
     play RECORD_ID  - play local record
     play RECORD_URL - play remote record
+
+  Setup:
+
+    setup API_KEY   - set your API key
+    backend [ttyrec|script] - setup recorder backend
 
   Visit: http://shelr.tv/ for more info.
 
@@ -28,7 +39,7 @@ case ARGV[0]
 when '-h', '--help'
   puts HELP
 when 'record'
-	Shelr::Recorder.record!
+        Shelr::Recorder.record!
 when 'list'
   Shelr::Player.list
 when 'play'
@@ -58,6 +69,13 @@ when 'setup'
     Shelr.api_key = ARGV[1]
   else
     puts "\n\tUsage: #{BASENAME} setup API_KEY\n\n"
+    exit
+  end
+when 'backend'
+  if ARGV[1]
+    Shelr.backend = ARGV[1]
+  else
+    puts "\n\tUsage: #{BASENAME} backend [ttyrec|script]\n\n"
     exit
   end
 else

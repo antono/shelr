@@ -3,21 +3,21 @@ module Shelr
   class Recorder
 
     HEADER = <<-EOH
- ____                        _ _             
-|  _ \ ___  ___ ___  _ __ __| (_)_ __   __ _ 
+ ____                        _ _
+|  _ \ ___  ___ ___  _ __ __| (_)_ __   __ _
 | |_) / _ \/ __/ _ \| '__/ _` | | '_ \ / _` |
 |  _ <  __/ (_| (_) | | | (_| | | | | | (_| |
 |_| \_\___|\___\___/|_|  \__,_|_|_| |_|\__, |
-                                       |___/ 
+                                       |___/
     EOH
 
     FOOTER = <<-EOF
- _____ _       _     _              _ 
+ _____ _       _     _              _
 |  ___(_)_ __ (_)___| |__   ___  __| |
 | |_  | | '_ \| / __| '_ \ / _ \/ _` |
 |  _| | | | | | \__ \ | | |  __/ (_| |
 |_|   |_|_| |_|_|___/_| |_|\___|\__,_|
-                                      
+
     EOF
 
     def self.record!
@@ -34,8 +34,9 @@ module Shelr
       puts HEADER
       puts "Your session started"
       puts "Type Ctrl+D or exit to finish recording"
-      system(script_cmd)
+      system(recorder_cmd)
       restore_terminal
+      save_as_typescript if Shelr.backend == 'ttyrec'
       puts FOOTER
       puts
       puts "Replay  : #{Shelr::APP_NAME} play last"
@@ -56,6 +57,20 @@ module Shelr
     end
 
     private
+
+    def save_as_typescript
+      puts '=> Converting ttyrec -> typescript'
+
+      ttyrecord  = File.open(record_file('ttyrecord'), 'r')
+      converter  = Shelr::TTYRec.new(ttyrecord)
+      typescript = converter.parse.to_typescript
+
+      [:typescript, :timing].each do |part|
+        File.open(record_file(part.to_s), 'w') do |f|
+          f.write(typescript[part])
+        end
+      end
+    end
 
     def check_record_dir
       FileUtils.mkdir_p(record_dir) unless File.exists?(record_dir)
@@ -85,9 +100,13 @@ module Shelr
       File.join(Shelr.data_dir(record_id), name)
     end
 
-    def script_cmd
-      "script -c 'bash' #{record_file('typescript')} -t 2> #{record_file('timing')}"
+    def recorder_cmd
+      case Shelr.backend
+      when 'script'
+        "script #{record_file('typescript')} -t 2> #{record_file('timing')}"
+      when 'ttyrec'
+        "ttyrec #{record_file('ttyrecord')}"
+      end
     end
-
   end
 end
