@@ -22,7 +22,7 @@ PKGBUILD: https://aur.archlinux.org/packages.php?ID=56945
 
 ## Watching other's records
 
-   shelr play http://shelr.tv/records/4d1c5458905ba77eb7000002
+    shelr play http://shelr.tv/records/4f4ca2a43cd1090001000002.json
 
 You can watch them online at [http://shelr.tv/][TV]
 
@@ -42,9 +42,17 @@ You can watch them online at [http://shelr.tv/][TV]
 
 ## Dependencies
 
+### Linux/BSD/Hurd/etc...
+
 You need `script` and `scriptreplay` tools from BSD Utils.
 Tey are already installed if You use Debian/Ubuntu/BSD variants.
-Not sure about other OSes.
+
+### OSX
+
+If You use OS X - install `ttyrec` via homebrew and setup it as recording backend.
+
+     brew install ttyrec
+     shelr backend ttyrec
 
 ## Copyright
 
