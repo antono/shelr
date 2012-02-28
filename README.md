@@ -50,7 +50,6 @@ Not sure about other OSes.
 
 Copyright (c) 2010, 2011, 2012 Antono Vasiljev. See LICENSE.txt for details.
 
-"!http://api.coderwall.com/antono/endorsecount.png!":http://coderwall/antono
-
+[![endorse](http://api.coderwall.com/antono/endorsecount.png)](http://coderwall.com/antono)
 
 [TV]: http://shelr.tv/ "Shellcasts from shell ninjas"
