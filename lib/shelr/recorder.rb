@@ -33,7 +33,7 @@ module Shelr
       request_metadata
       puts HEADER
       puts "Your session started"
-      puts "Type Ctrl+D or exit to finish recording"
+      puts "Press Ctrl+D or 'exit' to finish recording"
       system(recorder_cmd)
       restore_terminal
       save_as_typescript if Shelr.backend == 'ttyrec'

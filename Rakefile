@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "shelr"
   gem.homepage = "http://shelr.tv/"
   gem.license = "GPLv3"
-  gem.summary = %Q{Screencasts for Shell Ninjas}
-  gem.description = %Q{Screencast utility for unix shell junkies :)}
+  gem.summary = "Screencasts for Shell Ninjas"
+  gem.description = "Screencast utility for unix shell junkies"
   gem.email = "self@antono.info"
   gem.authors = ["Antono Vasiljev", "Pete Clark"]
 end
