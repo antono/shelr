@@ -51,7 +51,7 @@ If You use OS X - install `ttyrec` via homebrew and setup it as recording backen
 
 ## Copyright
 
-Copyright (Э) 2010, 2011, 2012 Antono Vasiljev and
+(Э) 2010, 2011, 2012 Antono Vasiljev and
 [contributors](https://github.com/antono/shelr/contributors).
 
 See LICENSE.txt for details.
