@@ -2,7 +2,7 @@
 require File.expand_path('../lib/shelr/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Antono Vasiljev", "Pete Clark"]
+  gem.authors       = ["Antono Vasiljev", "Pete Clark", "Vasiliy Ermolovich"]
   gem.email         = "self@antono.info"
   gem.description   = "Screencast utility for unix shell junkies"
   gem.summary       = "Screencasts for Shell Ninjas"

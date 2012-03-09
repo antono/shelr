@@ -12,13 +12,8 @@ See [shellcast](http://shelr.tv/records/4f49ea4ae557800001000004) for details :)
 
 ### From packages
 
-#### Debian/Ubuntu
-
-PPA: https://launchpad.net/~antono/+archive/shelr
-
-#### Archlinux
-
-PKGBUILD: https://aur.archlinux.org/packages.php?ID=56945
+- [PPA](https://launchpad.net/~antono/+archive/shelr) for Debian/Ubuntu
+- [PKGBUILD](https://aur.archlinux.org/packages.php?ID=56945) for Arch Linux
 
 ## Watching other's records
 
@@ -56,7 +51,10 @@ If You use OS X - install `ttyrec` via homebrew and setup it as recording backen
 
 ## Copyright
 
-Copyright (c) 2010, 2011, 2012 Antono Vasiljev. See LICENSE.txt for details.
+Copyright (Э) 2010, 2011, 2012 Antono Vasiljev and
+[contributors](https://github.com/antono/shelr/contributors).
+
+See LICENSE.txt for details.
 
 [![endorse](http://api.coderwall.com/antono/endorsecount.png)](http://coderwall.com/antono)
 
