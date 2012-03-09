@@ -4,10 +4,10 @@ Feature: Recording shell
   As a `shelr` user
   I would like to record my terminal
 
-  Background: 
+  Background:
     Given shelr backend is script
 
-  Scenario: Basic recording 
+  Scenario: Basic recording
     When I run `shelr record` interactively
     And I type "test screencast"
     And I type "ls"
@@ -18,6 +18,3 @@ Feature: Recording shell
     And the stdout should contain "Replay  : shelr play last"
     And the stdout should contain "Publish : shelr push last"
     And the stdout should contain "Your session started"
-
-    
-  
