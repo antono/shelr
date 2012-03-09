@@ -13,8 +13,6 @@ Feature: Recording shell
     And I type "ls"
     # FIXME: wtf with nested processes?
     And I type "exit"
-    And I type "exit"
-    And I type "exit"
     Then the stdout should contain "Provide HUMAN NAME for Your record: "
     And the stdout should contain "Press Ctrl+D or 'exit' to finish recording"
     And the stdout should contain "Replay  : shelr play last"
