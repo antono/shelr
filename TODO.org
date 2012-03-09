@@ -3,6 +3,8 @@
   git clone http://angband.pl/git/termrec
   http://angband.pl/termrec.html
 * DONE Think about terminal setup before shellcasting
+* TODO Re-implement scriptreplay in ruby for BSD/OSX guys
+* TODO Make all pseudographic fit terminal size
 * TODO Take in account suggestions from playterm
   be sure to set your terminal width/height to 80x24 or 120x35
   to get rid of your prompt type 'export PS1="playterm $ "'
