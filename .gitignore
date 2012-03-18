@@ -4,3 +4,4 @@ pkg/*
 .yardoc
 doc
 vendor/bundle
+TAGS
