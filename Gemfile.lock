@@ -59,6 +59,7 @@ DEPENDENCIES
   aruba!
   bundler
   jeweler
+  json
   mocha
   rspec
   simplecov

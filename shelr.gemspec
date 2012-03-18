@@ -15,4 +15,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Shelr::VERSION
   gem.license       = "GPLv3"
+
+  gem.add_dependency('log4r', '>= 1.6.5')
 end
