@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = Shelr::VERSION
   gem.license       = "GPLv3"
 
-  gem.add_dependency('log4r', '>= 1.6.5')
+  gem.add_dependency('json', '>= 1.6.5')
 end
