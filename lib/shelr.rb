@@ -29,7 +29,7 @@ module Shelr
     end
 
     def backend
-      @backend ||= File.read(BACKEND_CFG).strip || 'script'
+      @backend ||= File.exist?(BACKEND_CFG) ? File.read(BACKEND_CFG).strip : 'script'
     end
 
     def backend=(bin)
