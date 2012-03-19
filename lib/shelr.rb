@@ -16,6 +16,7 @@ module Shelr
   autoload :Player,    'shelr/player.rb'
   autoload :Publisher, 'shelr/publisher.rb'
   autoload :TTYRec,    'shelr/ttyrec.rb'
+  autoload :VERSION,   'shelr/version.rb'
 
   class << self
     def api_key

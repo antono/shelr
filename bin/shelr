@@ -78,6 +78,8 @@ when 'backend'
     puts "\n\tUsage: #{BASENAME} backend [ttyrec|script]\n\n"
     exit
   end
+when 'version'
+  puts Shelr::VERSION
 else
   puts HELP
 end
