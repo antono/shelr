@@ -19,6 +19,11 @@ HELP     = <<-HELP
     push last       - publish last record
     push RECORD_ID  - publish
 
+  Getting record as json:
+
+    dump last       - dump last record as json to current dir
+    dump RECORD_ID  - dump any record as json to current dir
+
   Replaying:
 
     list            - print list of records
@@ -53,7 +58,14 @@ when 'play'
     puts "Missing id for shellcast"
     Shelr::Player.list
     puts "Select one..."
-    exit
+  end
+when 'dump'
+  if ARGV[1]
+    Shelr::Publisher.new.dump(ARGV[1])
+  else
+    puts "What do you want to dump?"
+    Shelr::Player.list
+    puts "Select one..."
   end
 when 'push'
   if ARGV[1]
@@ -62,21 +74,18 @@ when 'push'
     puts "What do you want to publish?"
     Shelr::Player.list
     puts "Select one..."
-    exit
   end
 when 'setup'
   if ARGV[1]
     Shelr.api_key = ARGV[1]
   else
     puts "\n\tUsage: #{BASENAME} setup API_KEY\n\n"
-    exit
   end
 when 'backend'
   if ARGV[1]
     Shelr.backend = ARGV[1]
   else
     puts "\n\tUsage: #{BASENAME} backend [ttyrec|script]\n\n"
-    exit
   end
 when 'version'
   puts Shelr::VERSION

@@ -23,12 +23,16 @@ require 'rspec'
 require 'shelr'
 require "rubygems"
 require "bundler/setup"
+require 'pry'
+require 'pry-nav'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-
-RSpec.configure do |config|
-  config.mock_with :mocha
+def fixture(name)
+  file = File.join(File.expand_path("../fixtures/#{name}", __FILE__))
+  require 'pp'
+  pp file
+  JSON.parse(File.read(file))
 end

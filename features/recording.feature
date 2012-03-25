@@ -1,7 +1,7 @@
 Feature: Recording shell
 
   In order to impress the world
-  As a `shelr` user
+  As a `Ŝelr` user
   I would like to record my terminal
 
   Background:

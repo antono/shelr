@@ -27,6 +27,9 @@ or other services.
   * `push`:
     publish your shellcast
 
+  * `dump`:
+    dump shellcast as json to current directory.
+
 ## EXAMPLES
 
 Record your shellcast:
