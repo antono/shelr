@@ -13,9 +13,7 @@ describe Shelr do
     Shelr::CONFIG_DIR.should == File.join(ENV['XDG_CONFIG_HOME'], Shelr::APP_NAME)
   end
 
-  describe ".terminal" do
-    it "provides terminal info" do
-      Shelr.terminal.should be_a(Shelr::Terminal)
-    end
+  it "provides terminal info" do
+    Shelr.terminal.should be_a(Shelr::Terminal)
   end
 end
