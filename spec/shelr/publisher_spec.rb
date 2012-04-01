@@ -26,15 +26,16 @@ describe Shelr::Publisher do
   end
 
   describe "#dump(id)" do
+    let(:file) { mock('dump file') }
+
     before do
-      @file = mock('dump file')
-      File.stub(:open).and_yield @file
+      File.stub(:open).and_yield file
     end
 
     it "saves prepared dump to #dump_filename" do
       File.should_receive(:open).with(subject.send(:dump_filename), 'w+')
       subject.should_receive(:prepare).with('hello').and_return('dump')
-      @file.should_receive(:puts).with('dump')
+      file.should_receive(:puts).with('dump')
       subject.dump('hello')
     end
   end
