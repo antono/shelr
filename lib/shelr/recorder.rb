@@ -2,24 +2,6 @@
 module Shelr
   class Recorder
 
-    HEADER = <<-EOH
- ____                        _ _
-|  _ \ ___  ___ ___  _ __ __| (_)_ __   __ _
-| |_) / _ \/ __/ _ \| '__/ _` | | '_ \ / _` |
-|  _ <  __/ (_| (_) | | | (_| | | | | | (_| |
-|_| \_\___|\___\___/|_|  \__,_|_|_| |_|\__, |
-                                       |___/
-    EOH
-
-    FOOTER = <<-EOF
- _____ _       _     _              _
-|  ___(_)_ __ (_)___| |__   ___  __| |
-| |_  | | '_ \| / __| '_ \ / _ \/ _` |
-|  _| | | | | | \__ \ | | |  __/ (_| |
-|_|   |_|_| |_|_|___/_| |_|\___|\__,_|
-
-    EOF
-
     def self.record!
       new.record!
     end
@@ -31,13 +13,14 @@ module Shelr
     def record!
       check_record_dir
       request_metadata
-      puts HEADER
-      puts "Your session started"
-      puts "Press Ctrl+D or 'exit' to finish recording"
+      puts "-=" * (Shelr.terminal.size[:width] / 2)
+      puts "=> Your session started"
+      puts "=> Please, do not resize your terminal while recording"
+      puts "=> Press Ctrl+D or 'exit' to finish recording"
       system(recorder_cmd)
-      restore_terminal
       save_as_typescript if Shelr.backend == 'ttyrec'
-      puts FOOTER
+      puts "-=" * (Shelr.terminal.size[:width] / 2)
+      puts "=> Session finished"
       puts
       puts "Replay  : #{Shelr::APP_NAME} play last"
       puts "Publish : #{Shelr::APP_NAME} push last"
@@ -77,11 +60,7 @@ module Shelr
     end
 
     def init_terminal
-      @user_rows, @user_columns = `stty size`.split(' ')
-    end
-
-    def restore_terminal
-      # system("stty columns #{@user_columns} rows #{@user_rows}")
+      @user_rows, @user_columns = Shelr.terminal.size
     end
 
     def record_dir

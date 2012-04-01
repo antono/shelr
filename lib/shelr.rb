@@ -16,6 +16,7 @@ module Shelr
   autoload :Player,    'shelr/player.rb'
   autoload :Publisher, 'shelr/publisher.rb'
   autoload :TTYRec,    'shelr/ttyrec.rb'
+  autoload :Terminal,  'shelr/terminal.rb'
   autoload :VERSION,   'shelr/version.rb'
 
   class << self
@@ -49,6 +50,10 @@ module Shelr
 
     def last_id
       File.basename(Dir[File.join(DATA_DIR, '*')].sort.last)
+    end
+
+    def terminal
+      @terminal ||= Shelr::Terminal.new
     end
 
     private
