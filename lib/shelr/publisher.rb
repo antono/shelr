@@ -18,7 +18,7 @@ module Shelr
         File.open(dump_filename, 'w+') do |f|
           f.puts(prepare(id))
         end
-        puts "=> record dumped to #{dump_filename}"
+        STDOUT.puts "=> record dumped to #{dump_filename}"
       end
     end
 
@@ -27,18 +27,18 @@ module Shelr
     def with_exception_handler(&block)
       yield
     rescue => e
-      puts "=> Something went wrong..."
-      puts e.message
-      puts e.backtrace.join("\n")
+      STDOUT.puts "=> Something went wrong..."
+      STDOUT.puts e.message
+      STDOUT.puts e.backtrace.join("\n")
     end
 
     def handle_response(res)
       res = JSON.parse(res.body)
       if res['ok']
-        puts res['message']
-        puts Shelr::API_URL + '/records/' + res['id']
+        STDOUT.puts res['message']
+        STDOUT.puts Shelr::API_URL + '/records/' + res['id']
       else
-        puts res['message']
+        STDOUT.puts res['message']
       end
     end
 
@@ -48,7 +48,7 @@ module Shelr
 
     def api_key
       unless Shelr.api_key
-        print 'Paste your API KEY [or Enter to publish as Anonymous]: '
+        STDOUT.print 'Paste your API KEY [or Enter to publish as Anonymous]: '
         key = STDIN.gets.strip
         Shelr.api_key = key unless key.empty?
       end
@@ -56,11 +56,11 @@ module Shelr
     end
 
     def prepare(id)
-      puts
-      puts 'Your record will be published under terms of'
-      puts 'Creative Commons Attribution-ShareAlike 3.0 Unported'
-      puts 'See http://creativecommons.org/licenses/by-sa/3.0/ for details.'
-      puts
+      STDOUT.puts
+      STDOUT.puts 'Your record will be published under terms of'
+      STDOUT.puts 'Creative Commons Attribution-ShareAlike 3.0 Unported'
+      STDOUT.puts 'See http://creativecommons.org/licenses/by-sa/3.0/ for details.'
+      STDOUT.puts
 
       out = {}
       ['meta', 'timing', 'typescript'].each do |file|
@@ -69,9 +69,9 @@ module Shelr
 
       meta = JSON.parse(out.delete('meta'))
       meta.each { |k,v| out[k] = v }
-      print 'Description: '
+      STDOUT.print 'Description: '
       out['description'] = STDIN.gets.strip
-      print 'Tags (ex: howto, linux): '
+      STDOUT.print 'Tags (ex: howto, linux): '
       out['tags'] = STDIN.gets.strip
       return out.to_json
     end

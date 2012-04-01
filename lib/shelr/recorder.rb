@@ -2,6 +2,8 @@
 module Shelr
   class Recorder
 
+    attr_accessor :meta, :user_rows, :user_columns
+
     def self.record!
       new.record!
     end
@@ -12,28 +14,28 @@ module Shelr
 
     def record!
       check_record_dir
+      init_terminal
       request_metadata
-      puts "-=" * (Shelr.terminal.size[:width] / 2)
-      puts "=> Your session started"
-      puts "=> Please, do not resize your terminal while recording"
-      puts "=> Press Ctrl+D or 'exit' to finish recording"
+      STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)
+      STDOUT.puts "=> Your session started"
+      STDOUT.puts "=> Please, do not resize your terminal while recording"
+      STDOUT.puts "=> Press Ctrl+D or 'exit' to finish recording"
       system(recorder_cmd)
       save_as_typescript if Shelr.backend == 'ttyrec'
-      puts "-=" * (Shelr.terminal.size[:width] / 2)
-      puts "=> Session finished"
-      puts
-      puts "Replay  : #{Shelr::APP_NAME} play last"
-      puts "Publish : #{Shelr::APP_NAME} push last"
+      STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)
+      STDOUT.puts "=> Session finished"
+      STDOUT.puts
+      STDOUT.puts "Replay  : #{Shelr::APP_NAME} play last"
+      STDOUT.puts "Publish : #{Shelr::APP_NAME} push last"
     end
 
     def request_metadata
-      init_terminal
-      print "Provide HUMAN NAME for Your record: "
+      STDOUT.print "Provide HUMAN NAME for Your record: "
       @meta["title"] = STDIN.gets.strip
       @meta["created_at"] = record_id
       @meta["columns"] = @user_columns
       @meta["rows"] = @user_rows
-      puts record_file('meta')
+      STDOUT.puts record_file('meta')
       File.open(record_file('meta'), 'w+') do |meta|
         meta.puts @meta.to_json
       end
@@ -60,7 +62,8 @@ module Shelr
     end
 
     def init_terminal
-      @user_rows, @user_columns = Shelr.terminal.size
+      @user_rows, @user_columns =
+        Shelr.terminal.size[:height], Shelr.terminal.size[:width]
     end
 
     def record_dir

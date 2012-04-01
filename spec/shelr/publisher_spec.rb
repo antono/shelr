@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Shelr::Publisher do
   before do
+    STDOUT.stub(:puts)
+    STDOUT.stub(:print)
     File.stub(:open)
     Net::HTTP.stub(:post_form)
   end
