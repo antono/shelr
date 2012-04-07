@@ -6,4 +6,5 @@ doc
 vendor/bundle
 TAGS
 tags
+gems.tags
 .pc/
