@@ -1,5 +1,7 @@
 # Shelr -- screencasting for [shell ninjas][TV].
 
+[![Build Status](https://secure.travis-ci.org/antono/shelr.png?branch=master)](http://travis-ci.org/antono/shelr)
+
 ## Installation
 
 ### From gem
