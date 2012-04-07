@@ -1,6 +1,10 @@
-# Shelr -- screencasting for [shell ninjas][TV].
+# Shelr -- [tool for terminal screencasting][TV].
 
 [![Build Status](https://secure.travis-ci.org/antono/shelr.png?branch=master)](http://travis-ci.org/antono/shelr)
+
+`shelr` allows you to record/replay and publish your terminal on [http://shelr.tv](http://shelr.tv).
+[Code for Shelr.tv](https://github.com/antono/shelr.tv) service is also available on github.
+
 
 ## Installation
 
@@ -16,6 +20,7 @@ See [shellcast](http://shelr.tv/records/4f49ea4ae557800001000004) for details :)
 
 - [PPA](https://launchpad.net/~antono/+archive/shelr) for Debian/Ubuntu
 - [PKGBUILD](https://aur.archlinux.org/packages.php?ID=56945) for Arch Linux
+- [EBUILD](http://overlays.gentoo.org/proj/sunrise/browser/app-misc/shelr) for Gentoo Linux
 
 ## Watching other's records
 
