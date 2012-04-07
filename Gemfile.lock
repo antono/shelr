@@ -75,6 +75,7 @@ DEPENDENCIES
   guard-bundler
   guard-ctags-bundler!
   guard-rspec
+  json
   pry
   pry-nav
   rake
