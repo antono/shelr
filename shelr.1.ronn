@@ -44,8 +44,9 @@ List recorded shellcasts:
 
 Play local shellcast:
 
-    $ shelr play 1293702847
-    $ shelr play last # will play most recent local record
+    $ shelr play 1293702847  # play your own local record
+    $ shelr play record.json # created with shelr dump
+    $ shelr play last        # will play most recent local record
 
 Play remote shellcast:
 
