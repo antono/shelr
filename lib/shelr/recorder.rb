@@ -20,6 +20,7 @@ module Shelr
       STDOUT.puts "=> Your session started"
       STDOUT.puts "=> Please, do not resize your terminal while recording"
       STDOUT.puts "=> Press Ctrl+D or 'exit' to finish recording"
+      STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)
       system(recorder_cmd)
       save_as_typescript if Shelr.backend == 'ttyrec'
       STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)

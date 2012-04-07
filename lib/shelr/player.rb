@@ -7,30 +7,6 @@ require 'pathname'
 module Shelr
   class Player
 
-    HEADER = <<-EOH
-
-                 ____  _          _ _  ____          _   
-                / ___|| |__   ___| | |/ ___|__ _ ___| |_ 
-                \___ \| '_ \ / _ \ | | |   / _` / __| __|
-                 ___) | | | |  __/ | | |__| (_| \__ \ |_ 
-                |____/|_| |_|\___|_|_|\____\__,_|___/\__|
-
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-
-    EOH
-
-    FOOTER = <<-EOF
--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                 _____ _            _____           _ 
-                |_   _| |__   ___  | ____|_ __   __| |
-                  | | | '_ \ / _ \ |  _| | '_ \ / _` |
-                  | | | | | |  __/ | |___| | | | (_| |
-                  |_| |_| |_|\___| |_____|_| |_|\__,_|
-
-    EOF
-
-
     def self.play(id)
       new(id).play
     end
@@ -72,11 +48,11 @@ module Shelr
     end
 
     def play
-      puts HEADER
+      STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)
       puts
       system(scriptreplay_cmd)
       puts
-      puts FOOTER
+      STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)
     end
 
     private
