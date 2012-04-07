@@ -13,7 +13,6 @@ HELP     = <<-HELP
   Recording:
 
     record          - record new shellcast
-    stop            - stop recording (or just ctrl+d)
 
   Publishing:
 
@@ -62,9 +61,8 @@ when 'play'
     puts "Select one..."
   end
 when 'stop'
-  puts '=> Now you can push your record'
-  puts '=> shelr push last'
-  exit 0
+  puts '=> type "exit" or Ctrl+D'
+  puts '=> Then `shelr push last`'
 when 'dump'
   if ARGV[1]
     Shelr::Publisher.new.dump(ARGV[1])
