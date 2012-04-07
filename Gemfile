@@ -6,6 +6,8 @@ gem 'rake'
 gem "pry"
 gem "pry-nav"
 
+gem 'ronn'
+
 gem "rspec"
 gem "aruba", :git => 'git://github.com/cucumber/aruba.git'
 gem "simplecov"

@@ -12,4 +12,9 @@ task :merge do
   `chmod +x ./shelr`
 end
 
+task :man do
+  `bundle exec ronn shelr.1.ronn`
+  `rm shelr.1.html`
+end
+
 task :default => :spec
