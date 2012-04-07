@@ -9,12 +9,20 @@ describe Shelr::Publisher do
   end
 
   describe "#publish(id)" do
-    it "prepares record as json" do
+    before do
       STDIN.stub(:gets).and_return('something')
       subject.stub(:handle_response)
       subject.stub(:prepare).and_return(Fixture::load('record1.json'))
-      subject.should_receive(:prepare).with('hello')
+    end
 
+    it "prepares record as json" do
+      subject.should_receive(:prepare).with('hello')
+      subject.publish('hello')
+    end
+
+    it "it checks that file is not locked" do
+      subject.stub(:ensure_unlocked)
+      subject.should_receive(:ensure_unlocked).with('hello')
       subject.publish('hello')
     end
   end

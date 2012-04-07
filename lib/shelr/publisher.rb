@@ -5,6 +5,7 @@ module Shelr
   class Publisher
 
     def publish(id)
+      ensure_unlocked(id)
       with_exception_handler do
         uri = URI.parse(Shelr::API_URL + '/records')
         params = { 'record' => prepare(id) }
@@ -23,6 +24,17 @@ module Shelr
     end
 
     private
+
+    def ensure_unlocked(id)
+      lock_path = File.join(Shelr.data_dir(id), 'lock')
+      if File.exist?(lock_path)
+        puts "=> Cannot publish"
+        puts "=> Record locked on #{File.read(lock_path)}"
+        puts "=> Esure no other shelr process running"
+        puts "=> Or remove lock file manually: #{lock_path}"
+        exit 0
+      end
+    end
 
     def with_exception_handler(&block)
       yield

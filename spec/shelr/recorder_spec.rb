@@ -12,10 +12,17 @@ describe Shelr::Recorder do
   describe "#record!" do
     before do
       subject.stub(:system).with(anything).and_return(true)
+      subject.stub(:record_id => "1")
+      subject.stub(:with_lock_file).and_yield
     end
 
     it "starts script session" do
       subject.should_receive(:system).with(/script/)
+      subject.record!
+    end
+
+    it "creates lock file" do
+      subject.should_receive(:with_lock_file)
       subject.record!
     end
   end
