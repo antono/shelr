@@ -30,6 +30,7 @@ HELP     = <<-HELP
     play last       - play last local record
     play RECORD_ID  - play local record
     play RECORD_URL - play remote record
+    play dump.json  - play local file dumped with `shelr dump`
 
   Setup:
 
@@ -49,10 +50,10 @@ when 'list'
   Shelr::Player.list
 when 'play'
   if ARGV[1]
-    if ARGV[1] =~ /^http:.*/
+    if ARGV[1] =~ /^http:.*/ # remote file
       Shelr::Player.play_remote(ARGV[1])
-    else
-      Shelr::Player.play(ARGV[1])
+    elsif ARGV[1] =~ /.*\.json$/ # local file
+      Shelr::Player.play_dump(ARGV[1])
     end
   else
     puts "Missing id for shellcast"

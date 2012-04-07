@@ -14,32 +14,37 @@ module Shelr
     def self.play_remote(url)
       puts ".==> Fetching #{url}"
       resp = Net::HTTP.get(URI.parse(url))
-      parts = JSON.parse(resp)
+      play_parts_hash(JSON.parse(resp))
+    end
 
-      print "Title:\t"
-      puts parts['title']
-      print "Description:\t"
-      puts parts['description']
-
-      Dir.mktmpdir do |dir|
-        %w(typescript timing).each do |type|
-          File.open(File.join(dir, type), 'w') { |f| f.puts(parts[type]) }
-        end
-        puts "+==> Playing... "
-        system "scriptreplay #{File.join(dir, 'timing')} #{File.join(dir, 'typescript')}"
-        puts "+\n+"
-        print "| Title:\t"
-        puts parts['title']
-        print "| Description:\t"
-        puts parts['description']
-        puts "`==> The end... "
-      end
+    def self.play_dump(file)
+      json = File.read(File.open(file))
+      parts = JSON.parse(json)
+      play_parts_hash(parts)
     end
 
     def self.list
       Dir[File.join(Shelr::DATA_DIR, "**", 'meta')].each do |path|
         metadata = JSON.parse(IO.read(path))
         puts "#{metadata["created_at"]}: #{metadata["title"]}"
+      end
+    end
+
+    # TODO: refactore me!
+    def self.play_parts_hash(parts)
+      Dir.mktmpdir do |dir|
+        %w(typescript timing).each do |type|
+          File.open(File.join(dir, type), 'w') { |f| f.puts(parts[type]) }
+        end
+        Shelr.terminal.puts_line
+        puts "=> Title: #{parts['title']}"
+        puts "=> Description: #{parts['description']}t"
+        Shelr.terminal.puts_line
+        system "scriptreplay #{File.join(dir, 'timing')} #{File.join(dir, 'typescript')}"
+        Shelr.terminal.puts_line
+        puts "=> Title: #{parts['title']}"
+        puts "=> Description: #{parts['description']}t"
+        Shelr.terminal.puts_line
       end
     end
 
