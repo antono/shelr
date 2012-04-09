@@ -18,7 +18,7 @@ module Shelr
     end
 
     def self.play_dump(file)
-      json = File.read(File.open(file))
+      json = File.read(file)
       parts = JSON.parse(json)
       play_parts_hash(parts)
     end
