@@ -32,11 +32,14 @@ module Shelr
     end
 
     def request_metadata
-      STDOUT.print "Provide HUMAN NAME for Your record: "
+      STDOUT.print "Provide some title for your record: "
       @meta["title"] = STDIN.gets.strip
-      @meta["created_at"] = record_id
+      @meta["recorded_at"] = record_id
       @meta["columns"] = @user_columns
       @meta["rows"] = @user_rows
+      @meta["uname"] = `uname -a`
+      @meta["shell"] = ENV['SHELL']
+      @meta["term"] = ENV['TERM']
       STDOUT.puts record_file('meta')
       File.open(record_file('meta'), 'w+') do |meta|
         meta.puts @meta.to_json

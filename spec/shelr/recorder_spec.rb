@@ -42,10 +42,10 @@ describe Shelr::Recorder do
       subject.meta["columns"].should == 20
     end
 
-    it "adds record_id to @meta as created_at" do
+    it "adds record_id to @meta as recorded_at" do
       subject.stub(:record_id => 'ololo')
       subject.request_metadata
-      subject.meta["created_at"].should == 'ololo'
+      subject.meta["recorded_at"].should == 'ololo'
     end
 
     it "reads title from stdin" do
