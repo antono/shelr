@@ -28,7 +28,7 @@ module Shelr
     def ensure_unlocked(id)
       lock_path = File.join(Shelr.data_dir(id), 'lock')
       if File.exist?(lock_path)
-        puts "=> Cannot publish"
+        puts "=> Cannot publish the record (make sure it finished with exit or Ctrl+D)"
         puts "=> Record locked on #{File.read(lock_path)}"
         puts "=> Esure no other shelr process running"
         puts "=> Or remove lock file manually: #{lock_path}"
