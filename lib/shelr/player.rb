@@ -26,7 +26,7 @@ module Shelr
     def self.list
       Dir[File.join(Shelr::DATA_DIR, "**", 'meta')].each do |path|
         metadata = JSON.parse(IO.read(path))
-        puts "#{metadata["created_at"]}: #{metadata["title"]}"
+        puts "#{metadata["recorded_at"]}: #{metadata["title"]}"
       end
     end
 
