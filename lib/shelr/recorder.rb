@@ -40,6 +40,7 @@ module Shelr
       @meta["uname"] = `uname -a`
       @meta["shell"] = ENV['SHELL']
       @meta["term"] = ENV['TERM']
+      @meta["xdg_current_desktop"] = ENV['XDG_CURRENT_DESKTOP']
       STDOUT.puts record_file('meta')
       File.open(record_file('meta'), 'w+') do |meta|
         meta.puts @meta.to_json

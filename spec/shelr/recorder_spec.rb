@@ -48,6 +48,12 @@ describe Shelr::Recorder do
       subject.meta["recorded_at"].should == 'ololo'
     end
 
+    it "adds XDG_CURRENT_DESKTOP to @meta as xdg_current_desktop" do
+      subject.stub(:record_id => 'ololo')
+      subject.request_metadata
+      subject.meta["recorded_at"].should == 'ololo'
+    end
+
     it "reads title from stdin" do
       STDIN.stub(:gets => 'C00l title')
       subject.request_metadata
