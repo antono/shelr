@@ -54,6 +54,8 @@ when 'play'
       Shelr::Player.play_remote(ARGV[1])
     elsif ARGV[1] =~ /.*\.json$/ # local file
       Shelr::Player.play_dump(ARGV[1])
+    else
+      Shelr::Player.play(ARGV[1])
     end
   else
     puts "Missing id for shellcast"
