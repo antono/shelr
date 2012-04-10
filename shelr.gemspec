@@ -2,9 +2,9 @@
 require File.expand_path('../lib/shelr/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Antono Vasiljev", "Pete Clark", "Vasiliy Ermolovich"]
+  gem.authors       = ["Antono Vasiljev", "Pete Clark", "Vasiliy Ermolovich", "Roman H (mindreframer)"]
   gem.email         = "self@antono.info"
-  gem.description   = "Screencast utility for unix shell junkies"
+  gem.description   = "Plain text screencast recorder"
   gem.summary       = "Screencasts for Shell Ninjas"
   gem.homepage      = "http://shelr.tv/"
 
