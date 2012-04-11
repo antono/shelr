@@ -50,7 +50,7 @@ when 'list'
   Shelr::Player.list
 when 'play'
   if ARGV[1]
-    if ARGV[1] =~ /^http:.*/ # remote file
+    if ARGV[1] =~ /^https?:.*/ # remote file
       Shelr::Player.play_remote(ARGV[1])
     elsif ARGV[1] =~ /.*\.json$/ # local file
       Shelr::Player.play_dump(ARGV[1])
