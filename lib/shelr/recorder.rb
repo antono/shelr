@@ -13,6 +13,7 @@ module Shelr
     end
 
     def record!
+      ensure_terminal_has_good_size
       check_record_dir
       with_lock_file do
         init_terminal
@@ -21,6 +22,7 @@ module Shelr
         STDOUT.puts "=> Your session started"
         STDOUT.puts "=> Please, do not resize your terminal while recording"
         STDOUT.puts "=> Press Ctrl+D or 'exit' to finish recording"
+        Shelr.terminal.puts_line
         system(recorder_cmd)
         save_as_typescript if Shelr.backend == 'ttyrec'
         Shelr.terminal.puts_line
@@ -48,6 +50,18 @@ module Shelr
     end
 
     private
+
+    def ensure_terminal_has_good_size
+      if (Shelr.terminal.size[:height] > 43) or (Shelr.terminal.size[:width] > 132)
+        Shelr.terminal.puts_line
+        puts "=> Please, resize your terminal!"
+        puts "=> Sizes bigger than 132x43 are slow and will not be available to all users."
+        puts "=> We care about this."
+        puts "=> Also, do not resize your terminal while recording. It will break the record."
+        Shelr.terminal.puts_line
+        exit(0)
+      end
+    end
 
     def with_lock_file
       lock_path = record_file('lock')
