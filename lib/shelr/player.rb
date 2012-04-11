@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'net/http'
+require 'net/https'
 require 'tmpdir'
 require 'fileutils'
 require 'pathname'
@@ -13,7 +14,10 @@ module Shelr
 
     def self.play_remote(url)
       puts ".==> Fetching #{url}"
-      resp = Net::HTTP.get(URI.parse(url))
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true if uri.scheme == "https"
+      resp = http.request_get(uri.path).body
       play_parts_hash(JSON.parse(resp))
     end
 
