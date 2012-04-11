@@ -12,7 +12,11 @@
 
 You'll need ruby and rubygems installed.
 
-    gem install shelr
+    [sudo] gem install shelr
+
+On ubuntu older than precise you should also add following to your `.bashrc` or `.zshrc`
+
+    export PATH=/var/lib/gems/1.8/bin:$PATH
 
 See [shellcast](http://shelr.tv/records/4f49ea4ae557800001000004) for details :)
 
