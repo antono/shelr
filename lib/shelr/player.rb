@@ -64,6 +64,9 @@ module Shelr
       STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)
     end
 
+    def scriptreplay(typescript, timing)
+    end
+
     private
 
     def record_file(name)

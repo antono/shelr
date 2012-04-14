@@ -5,6 +5,7 @@ describe Shelr::Recorder do
   before do
     STDIN.stub(:gets).and_return('my shellcast')
     Shelr.backend = 'script'
+    # disable term size guard
     STDOUT.stub(:puts)
     STDOUT.stub(:print)
   end
@@ -13,6 +14,7 @@ describe Shelr::Recorder do
     before do
       subject.stub(:system).with(anything).and_return(true)
       subject.stub(:record_id => "1")
+      subject.stub(:ensure_terminal_has_good_size)
       subject.stub(:with_lock_file).and_yield
     end
 
@@ -49,9 +51,9 @@ describe Shelr::Recorder do
     end
 
     it "adds XDG_CURRENT_DESKTOP to @meta as xdg_current_desktop" do
-      subject.stub(:record_id => 'ololo')
+      ENV['XDG_CURRENT_DESKTOP'] = 'united-kde-gnome-shell'
       subject.request_metadata
-      subject.meta["recorded_at"].should == 'ololo'
+      subject.meta["xdg_current_desktop"].should == 'united-kde-gnome-shell'
     end
 
     it "reads title from stdin" do
@@ -67,6 +69,12 @@ describe Shelr::Recorder do
       subject.send :init_terminal
       subject.user_rows.should == 20
       subject.user_columns.should == 10
+    end
+  end
+
+  describe "#scriptreplay(typescript, timing)" do
+    it "reads typescript" do
+      File.stub(:read)
     end
   end
 end

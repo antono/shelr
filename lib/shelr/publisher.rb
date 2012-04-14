@@ -4,7 +4,8 @@ require 'uri'
 module Shelr
   class Publisher
 
-    def publish(id)
+    def publish(id, priv = false)
+      @private = priv
       ensure_unlocked(id)
       with_exception_handler do
         uri = URI.parse(Shelr::API_URL + '/records')
@@ -30,7 +31,7 @@ module Shelr
       if File.exist?(lock_path)
         puts "=> Cannot publish the record (make sure it finished with exit or Ctrl+D)"
         puts "=> Record locked on #{File.read(lock_path)}"
-        puts "=> Esure no other shelr process running"
+        puts "=> Make sure no other shelr process running (ps axu | grep shelr)"
         puts "=> Or remove lock file manually: #{lock_path}"
         exit 0
       end
@@ -45,12 +46,14 @@ module Shelr
     end
 
     def handle_response(res)
-      res = JSON.parse(res.body)
-      if res['ok']
-        STDOUT.puts res['message']
-        STDOUT.puts Shelr::API_URL + '/records/' + res['id']
-      else
-        STDOUT.puts res['message']
+      with_exception_handler do
+        res = JSON.parse(res.body)
+        if res['ok']
+          STDOUT.puts "=> " + res['message'].to_s
+          STDOUT.puts "=> " + res['url'].to_s
+        else
+          STDOUT.puts res['message']
+        end
       end
     end
 
@@ -85,6 +88,7 @@ module Shelr
       out['description'] = STDIN.gets.strip
       STDOUT.print 'Tags (ex: howto, linux): '
       out['tags'] = STDIN.gets.strip
+      out['private'] = @private
       return out.to_json
     end
   end

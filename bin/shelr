@@ -10,34 +10,37 @@ HELP     = <<-HELP
 
   Usage: #{BASENAME} command [arg]
 
-  Recording:
+  COMMANDS:
 
-    record          - record new shellcast
+    Recording:
 
-  Publishing:
+      record              - record new shellcast
 
-    push last       - publish last record
-    push RECORD_ID  - publish
+    Publishing:
 
-  Getting record as json:
+      push last           - publish last record
+      push last --private - publish private record
+      push RECORD_ID      - publish record with given id
 
-    dump last       - dump last record as json to current dir
-    dump RECORD_ID  - dump any record as json to current dir
+    Getting record as json:
 
-  Replaying:
+      dump last           - dump last record as json to current dir
+      dump RECORD_ID      - dump any record as json to current dir
 
-    list            - print list of records
-    play last       - play last local record
-    play RECORD_ID  - play local record
-    play RECORD_URL - play remote record
-    play dump.json  - play local file dumped with `shelr dump`
+    Replaying:
 
-  Setup:
+      list                - print list of records
+      play last           - play last local record
+      play RECORD_ID      - play local record
+      play RECORD_URL     - play remote record
+      play dump.json      - play local file dumped with `shelr dump`
 
-    setup API_KEY   - set your API key
-    backend [ttyrec|script] - setup recorder backend
+    Setup:
 
-  Visit: http://shelr.tv/ for more info.
+      setup API_KEY   - set your API key
+      backend [ttyrec|script] - setup recorder backend
+
+    Visit: http://shelr.tv/ for more info.
 
 HELP
 
@@ -75,7 +78,7 @@ when 'dump'
   end
 when 'push'
   if ARGV[1]
-    Shelr::Publisher.new.publish(ARGV[1])
+    Shelr::Publisher.new.publish(ARGV[1], ARGV[2] == '--private')
   else
     puts "What do you want to publish?"
     Shelr::Player.list
