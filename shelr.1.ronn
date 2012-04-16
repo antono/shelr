@@ -35,7 +35,7 @@ or other services.
 Record your shellcast:
 
     $ shelr record
-    ... do something ...
+    $ # do something ...
     $ exit
 
 List recorded shellcasts:
