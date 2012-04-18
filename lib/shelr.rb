@@ -4,12 +4,12 @@ require 'json'
 module Shelr
 
   APP_NAME       = 'shelr'
-  API_URL        = ENV['SHELR_LOCAL'] ? 'http://localhost:3000' : 'http://shelr.tv'
   XDG_DATA_DIR   = ENV['XDG_DATA_HOME']   || File.join(ENV['HOME'], '.local', 'share')
   XDG_CONFIG_DIR = ENV['XDG_CONFIG_HOME'] || File.join(ENV['HOME'], '.config')
   DATA_DIR       = File.join(XDG_DATA_DIR,   APP_NAME)
   CONFIG_DIR     = File.join(XDG_CONFIG_DIR, APP_NAME)
   API_KEY_CFG    = File.join(CONFIG_DIR, 'api_key')
+  API_URL_CFG    = File.join(CONFIG_DIR, 'api_url')
   BACKEND_CFG    = File.join(CONFIG_DIR, 'backend')
 
   autoload :Recorder,  'shelr/recorder.rb'
@@ -28,6 +28,16 @@ module Shelr
     def api_key=(key)
       ensure_config_dir_exist
       File.open(API_KEY_CFG, 'w+') { |f| f.puts(key.strip) }
+    end
+
+    def api_url
+      return ENV['SHELR_LOCAL'] ? 'http://localhost:3000' : 'http://shelr.tv' unless File.exist?(API_URL_CFG)
+      @api_url ||= File.read(API_URL_CFG).strip
+    end
+
+    def api_url=(url)
+      ensure_config_dir_exist
+      File.open(API_URL_CFG, 'w+') { |f| f.puts(url.strip) }
     end
 
     def backend
