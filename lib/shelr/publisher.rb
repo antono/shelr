@@ -8,7 +8,7 @@ module Shelr
       @private = priv
       ensure_unlocked(id)
       with_exception_handler do
-        uri = URI.parse(Shelr::API_URL + '/records')
+        uri = URI.parse(Shelr.api_url + '/records')
         params = { 'record' => prepare(id) }
         params.merge!({'api_key' => Shelr.api_key}) if api_key
         handle_response Net::HTTP.post_form(uri, params)
