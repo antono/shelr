@@ -37,7 +37,7 @@ HELP     = <<-HELP
 
     Setup:
 
-      setup API_KEY   - set your API key
+      setup API_KEY [API_URL] - set your API key and API site
       backend [ttyrec|script] - setup recorder backend
 
     Visit: http://shelr.tv/ for more info.
@@ -85,6 +85,9 @@ when 'push'
     puts "Select one..."
   end
 when 'setup'
+  if ARGV[2]
+    Shelr.api_url = ARGV[2]
+  end
   if ARGV[1]
     Shelr.api_key = ARGV[1]
   else
