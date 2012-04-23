@@ -44,7 +44,7 @@ module Shelr
         puts "=> Title: #{parts['title']}"
         puts "=> Description: #{parts['description']}t"
         Shelr.terminal.puts_line
-        system "scriptreplay #{File.join(dir, 'timing')} #{File.join(dir, 'typescript')}"
+        scriptreplay File.join(dir, 'typescript'), File.join(dir, 'timing')
         Shelr.terminal.puts_line
         puts "=> Title: #{parts['title']}"
         puts "=> Description: #{parts['description']}t"
@@ -57,24 +57,31 @@ module Shelr
     end
 
     def play
-      STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)
-      puts
+      Shelr.terminal.puts_line
       system(scriptreplay_cmd)
-      puts
-      STDOUT.puts "-=" * (Shelr.terminal.size[:width] / 2)
-    end
-
-    def scriptreplay(typescript, timing)
+      Shelr.terminal.puts_line
     end
 
     private
+
+    def scriptreplay(typescript_file, timing_file)
+      typescript = File.open(typescript_file)
+      timing = File.open(timing_file)
+      frames = timing.read.split("\n").map { |line| line.split(" ") }
+      typescript.gets # skip first line
+
+      frames.each do |usec,length|
+        sleep(usec.to_f)
+        print typescript.read(length.to_i)
+      end
+    end
 
     def record_file(name)
       File.join(Shelr.data_dir(@record_id), name)
     end
 
     def scriptreplay_cmd
-      "scriptreplay #{record_file('timing')} #{record_file('typescript')}"
+      scriptreplay record_file('typescript'), record_file('timing')
     end
   end
 end

@@ -61,11 +61,6 @@ If You use OS X - install `ttyrec` via homebrew and setup it as recording backen
      brew install ttyrec
      shelr backend ttyrec
      
-Also put the scriptreplay script somewhere in your PATH, e.g. /usr/local/bin
-
-    curl https://raw.github.com/gist/2343833/0287752171cb045205e88664a32f63bf3a45565f/scriptreplay > /usr/local/bin/scriptreplay
-    chmod +x /usr/local/bin/scriptreplay
-
 ## Copyright
 
 (Э) 2010, 2011, 2012 Antono Vasiljev and
