@@ -58,30 +58,27 @@ module Shelr
 
     def play
       Shelr.terminal.puts_line
-      system(scriptreplay_cmd)
+      self.class.scriptreplay record_file('typescript'), record_file('timing')
       Shelr.terminal.puts_line
+    end
+
+    def self.scriptreplay(typescript_file, timing_file)
+      typescript = File.open(typescript_file)
+      timing = File.open(timing_file)
+      frames = timing.read.split("\n").map { |line| line.split(" ") }
+      frames.map! { |k,v| [k.to_f.abs, v.to_i] }
+      typescript.gets # skip first line
+
+      frames.each do |usec,length|
+        sleep(usec)
+        print typescript.read(length)
+      end
     end
 
     private
 
-    def scriptreplay(typescript_file, timing_file)
-      typescript = File.open(typescript_file)
-      timing = File.open(timing_file)
-      frames = timing.read.split("\n").map { |line| line.split(" ") }
-      typescript.gets # skip first line
-
-      frames.each do |usec,length|
-        sleep(usec.to_f)
-        print typescript.read(length.to_i)
-      end
-    end
-
     def record_file(name)
       File.join(Shelr.data_dir(@record_id), name)
-    end
-
-    def scriptreplay_cmd
-      scriptreplay record_file('typescript'), record_file('timing')
     end
   end
 end
