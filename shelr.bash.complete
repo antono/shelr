@@ -1,0 +1,33 @@
+#!/bin/bash
+
+_shelr() 
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts="record push dump list play setup backend"
+
+    if test $COMP_CWORD -eq 2; then
+      case $prev in
+          record|list)
+              COMPREPLY=() ;
+              return 0 ;;
+          backend)
+              COMPREPLY=( $(compgen -W "ttyrec script" -- ${cur}) ) ;
+              return 0 ;;
+          push|play)
+              COMPREPLY=( "last" ) ;
+              return 0 ;;
+      esac
+    fi
+
+    if test $COMP_CWORD -eq 1; then
+      COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) ) 
+      return 0
+    fi
+
+}
+complete -F _shelr shelr
+
+# vim:set ts=4 sw=2 et: 
