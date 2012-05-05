@@ -9,7 +9,7 @@ module Shelr
   class Player
 
     def self.play(id)
-      new(id).play
+      new.play(id)
     end
 
     def self.play_remote(url)
@@ -28,9 +28,9 @@ module Shelr
     end
 
     def self.list
-      Dir[File.join(Shelr::DATA_DIR, "**", 'meta')].each do |path|
-        metadata = JSON.parse(IO.read(path))
-        puts "#{metadata["recorded_at"]}: #{metadata["title"]}"
+      (Dir[File.join(Shelr::DATA_DIR, "**")] - ['.', '..']).sort.each do |dir|
+        metadata = JSON.parse(IO.read(File.join(dir, 'meta')))
+        puts "#{metadata["recorded_at"]} : #{metadata["title"]}"
       end
     end
 
@@ -52,11 +52,8 @@ module Shelr
       end
     end
 
-    def initialize(id)
+    def play(id)
       @record_id = id
-    end
-
-    def play
       Shelr.terminal.puts_line
       self.class.scriptreplay record_file('typescript'), record_file('timing')
       Shelr.terminal.puts_line
