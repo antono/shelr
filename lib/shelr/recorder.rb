@@ -112,17 +112,16 @@ module Shelr
     def start_sound_recording
       STDOUT.puts "Sound file stored in #{record_file('sound.ogg')}"
       @sox_pid = fork do
-        Signal.trap("HUP") { puts "Sound recording finished!"; exit }
-        run_sound_recorder
+        Signal.trap("INT") { puts "=> Sound recording finished!"; exit }
+        `rec -C 1 --channels 1 --rate 16k --comment 'Recorded for http://shelr.tv/' #{record_file('sound.ogg')} 2>&1`
       end
     end
 
     def stop_sound_recording
-      Process.kill("HUP", @sox_pid)
-    end
-
-    def run_sound_recorder
-      `rec -C 1 --channels 1 --rate 8k --comment 'Recorded for http://shelr.tv/' #{record_file('sound.ogg')} 2>&1`
+      STDOUT.puts "=> Stopping sound recorder"
+      sleep 2 # otherwise record will be cropped for some reason
+      Process.kill("INT", @sox_pid)
+      Process.waitpid(@sox_pid)
     end
 
     def recorder_cmd
