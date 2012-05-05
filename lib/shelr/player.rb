@@ -29,8 +29,12 @@ module Shelr
 
     def self.list
       (Dir[File.join(Shelr::DATA_DIR, "**")] - ['.', '..']).sort.each do |dir|
-        metadata = JSON.parse(IO.read(File.join(dir, 'meta')))
-        puts "#{metadata["recorded_at"]} : #{metadata["title"]}"
+        begin
+          metadata = JSON.parse(IO.read(File.join(dir, 'meta')))
+          puts "#{metadata["recorded_at"]} : #{metadata["title"]}"
+        rescue Errno::ENOENT
+          puts "Corrupted shellcast in #{dir}"
+        end
       end
     end
 
@@ -55,7 +59,7 @@ module Shelr
 
     def start_sound_player
       return unless File.exist?(record_file('sound.ogg'))
-      at_exit { system('stty echo') }
+      # at_exit { system('stty echo') }
       STDOUT.puts "=> Starting sound player..."
       @sox_pid = fork do
         `play #{record_file('sound.ogg')} 2>&1`
@@ -65,7 +69,7 @@ module Shelr
     def stop_sound_player
       return unless File.exist?(record_file('sound.ogg'))
       STDOUT.puts "=> Stopping sound player..."
-      Process.kill("HUP", @sox_pid)
+      Process.waitpid(@sox_pid)
     end
 
     def self.scriptreplay(typescript_file, timing_file)
