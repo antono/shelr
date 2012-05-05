@@ -15,6 +15,7 @@ HELP     = <<-HELP
     Recording:
 
       record              - record new shellcast
+      record --sound      - record new shellcast with sound
 
     Publishing:
 
@@ -48,7 +49,7 @@ case ARGV[0]
 when '-h', '--help'
   puts HELP
 when 'record'
-  Shelr::Recorder.record!
+  Shelr::Recorder.record!(sound: ARGV[1] == '--sound')
 when 'list'
   Shelr::Player.list
 when 'play'
@@ -58,7 +59,7 @@ when 'play'
     elsif ARGV[1] =~ /.*\.json$/ # local file
       Shelr::Player.play_dump(ARGV[1])
     else
-      Shelr::Player.play(ARGV[1])
+      Shelr::Player.play(:record_id => ARGV[1])
     end
   else
     puts "Missing id for shellcast"

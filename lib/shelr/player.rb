@@ -8,8 +8,8 @@ require 'pathname'
 module Shelr
   class Player
 
-    def self.play(id)
-      new.play(id)
+    def self.play(options)
+      new.play(options)
     end
 
     def self.play_remote(url)
@@ -40,23 +40,32 @@ module Shelr
         %w(typescript timing).each do |type|
           File.open(File.join(dir, type), 'w') { |f| f.puts(parts[type]) }
         end
-        Shelr.terminal.puts_line
-        puts "=> Title: #{parts['title']}"
-        puts "=> Description: #{parts['description']}t"
-        Shelr.terminal.puts_line
-        scriptreplay File.join(dir, 'typescript'), File.join(dir, 'timing')
-        Shelr.terminal.puts_line
-        puts "=> Title: #{parts['title']}"
-        puts "=> Description: #{parts['description']}t"
-        Shelr.terminal.puts_line
+        play(:record_dir => dir)
       end
     end
 
-    def play(id)
-      @record_id = id
+    def play(options = {})
+      @options = options
+      start_sound_player
       Shelr.terminal.puts_line
       self.class.scriptreplay record_file('typescript'), record_file('timing')
       Shelr.terminal.puts_line
+      stop_sound_player
+    end
+
+    def start_sound_player
+      return unless File.exist?(record_file('sound.ogg'))
+      at_exit { system('stty echo') }
+      STDOUT.puts "=> Starting sound player..."
+      @sox_pid = fork do
+        `play #{record_file('sound.ogg')} 2>&1`
+      end
+    end
+
+    def stop_sound_player
+      return unless File.exist?(record_file('sound.ogg'))
+      STDOUT.puts "=> Stopping sound player..."
+      Process.kill("HUP", @sox_pid)
     end
 
     def self.scriptreplay(typescript_file, timing_file)
@@ -75,7 +84,11 @@ module Shelr
     private
 
     def record_file(name)
-      File.join(Shelr.data_dir(@record_id), name)
+      File.join(record_dir, name)
+    end
+
+    def record_dir
+      @options[:record_id] ? Shelr.data_dir(@options[:record_id]) : @options[:record_dir]
     end
   end
 end

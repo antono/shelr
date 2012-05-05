@@ -4,15 +4,15 @@ module Shelr
 
     attr_accessor :meta, :user_rows, :user_columns
 
-    def self.record!
-      new.record!
+    def self.record!(options = {})
+      new.record!(options)
     end
 
     def initialize
       @meta = {}
     end
 
-    def record!
+    def record!(options = {})
       ensure_terminal_has_good_size
       check_record_dir
       with_lock_file do
@@ -23,7 +23,9 @@ module Shelr
         STDOUT.puts "=> Please, do not resize your terminal while recording"
         STDOUT.puts "=> Press Ctrl+D or 'exit' to finish recording"
         Shelr.terminal.puts_line
+        start_sound_recording if options[:sound]
         system(recorder_cmd)
+        stop_sound_recording if options[:sound]
         save_as_typescript if Shelr.backend == 'ttyrec'
         Shelr.terminal.puts_line
         STDOUT.puts "=> Session finished"
@@ -105,6 +107,22 @@ module Shelr
 
     def record_file(name)
       File.join(Shelr.data_dir(record_id), name)
+    end
+
+    def start_sound_recording
+      STDOUT.puts "Sound file stored in #{record_file('sound.ogg')}"
+      @sox_pid = fork do
+        Signal.trap("HUP") { puts "Sound recording finished!"; exit }
+        run_sound_recorder
+      end
+    end
+
+    def stop_sound_recording
+      Process.kill("HUP", @sox_pid)
+    end
+
+    def run_sound_recorder
+      `rec -C 1 --channels 1 --rate 8k --comment 'Recorded for http://shelr.tv/' #{record_file('sound.ogg')} 2>&1`
     end
 
     def recorder_cmd
