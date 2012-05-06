@@ -49,7 +49,7 @@ case ARGV[0]
 when '-h', '--help'
   puts HELP
 when 'record'
-  Shelr::Recorder.record!(sound: ARGV[1] == '--sound')
+  Shelr::Recorder.record!(:sound => ARGV[1] == '--sound')
 when 'list'
   Shelr::Player.list
 when 'play'
