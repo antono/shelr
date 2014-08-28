@@ -3,5 +3,3 @@ source "http://rubygems.org"
 gem 'rake'
 gem 'json'
 gem 'rspec'
-gem 'pry'
-gem 'pry-nav'
