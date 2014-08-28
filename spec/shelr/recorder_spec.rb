@@ -64,8 +64,10 @@ describe Shelr::Recorder do
   end
 
   describe "#init_terminal" do
+    let(:win_grid) { double(:size => { :width => 10, :height => 20 }) }
+
     it "gets user_columns and user_rows from system" do
-      Shelr.stub(:terminal).and_return(mock(:size => { :width => 10, :height => 20 }))
+      Shelr.stub(:terminal).and_return(win_grid)
       subject.send :init_terminal
       subject.user_rows.should == 20
       subject.user_columns.should == 10
