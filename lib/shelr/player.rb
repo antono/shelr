@@ -2,8 +2,6 @@
 require 'net/http'
 require 'net/https'
 require 'tmpdir'
-require 'fileutils'
-require 'pathname'
 
 module Shelr
   class Player

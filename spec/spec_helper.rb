@@ -21,10 +21,12 @@ ENV['XDG_CONFIG_HOME'] = XDG_CONFIG_DIR.to_s
 
 require 'rspec'
 require 'shelr'
-require "rubygems"
-require "bundler/setup"
-require 'pry'
-require 'pry-nav'
+require 'rubygems'
+require 'bundler/setup'
+if ENV['PRY']
+  require 'pry'
+  require 'pry-nav'
+end
 
 RSpec.configure do |config|
   config.mock_with :rspec
@@ -32,4 +34,4 @@ end
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
+Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }

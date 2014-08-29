@@ -34,7 +34,7 @@ describe Shelr::Publisher do
   end
 
   describe "#dump(id)" do
-    let(:file) { mock('dump file') }
+    let(:file) { double('dump file') }
 
     before do
       File.stub(:open).and_yield file
