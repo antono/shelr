@@ -23,8 +23,10 @@ require 'rspec'
 require 'shelr'
 require "rubygems"
 require "bundler/setup"
-require 'pry'
-require 'pry-nav'
+if ENV['USE_PRY']
+  require 'pry'
+  require 'pry-nav'
+end
 
 RSpec.configure do |config|
   config.mock_with :rspec
