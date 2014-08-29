@@ -21,9 +21,9 @@ ENV['XDG_CONFIG_HOME'] = XDG_CONFIG_DIR.to_s
 
 require 'rspec'
 require 'shelr'
-require "rubygems"
-require "bundler/setup"
-if ENV['USE_PRY']
+require 'rubygems'
+require 'bundler/setup'
+if ENV['PRY']
   require 'pry'
   require 'pry-nav'
 end
