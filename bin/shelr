@@ -62,7 +62,7 @@ when 'play'
       Shelr::Player.play(:record_id => ARGV[1])
     end
   else
-    puts "Missing id for shellcast"
+    puts "Missing id for record"
     Shelr::Player.list
     puts "Select one..."
   end
