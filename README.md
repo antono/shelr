@@ -10,7 +10,7 @@
 
 ### From gem
 
-You'll need ruby and rubygems installed.
+You'll need ruby, ruby-devel/ruby-dev and rubygems installed.
 
     [sudo] gem install shelr
 
