@@ -51,7 +51,7 @@ GEM
       slop (>= 2.4.4, < 3)
     pry-nav (0.1.0)
       pry (~> 0.9.8.1)
-    rake (10.4.2)
+    rake (13.0.1)
     rdiscount (1.6.8)
     ronn (0.7.3)
       hpricot (>= 0.8.2)
